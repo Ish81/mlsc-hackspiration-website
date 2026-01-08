@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MLSC Hackspiration Website
 
 This repository contains multiple design variations for the MLSC website built for Hackspiration.

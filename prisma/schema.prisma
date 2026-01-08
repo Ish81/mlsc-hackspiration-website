@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          Role      @default(USER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Team {
+  id               String   @id @default(cuid())
+  name             String
+  leaderEmail      String
+  labNumber        String?
+  presentationSlot String?
+  projectLink      String?
+  members          Member[]
+  status           Status   @default(PENDING)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Member {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  team      Team     @relation(fields: [teamId], references: [id])
+  teamId    String
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  name        String
+  date        DateTime
+  type        String
+  description String
+  image       String?
+  createdAt   DateTime @default(now())
+}
+
+model Photo {
+  id         String      @id @default(cuid())
+  url        String
+  status     PhotoStatus @default(PENDING)
+  uploadedBy String?
+  createdAt  DateTime    @default(now())
+}
+
+model Winner {
+  id       String @id @default(cuid())
+  rank     Int
+  teamName String
+  prize    String
+  image    String?
+  members  String[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Status {
+  PENDING
+  SHORTLISTED
+  REJECTED
+}
+
+enum PhotoStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}

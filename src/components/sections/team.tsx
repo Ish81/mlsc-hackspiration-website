@@ -28,7 +28,7 @@ export function Team() {
                     </h2>
                 </motion.div>
 
-                <div className="grid gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 items-center justify-center align-center">
+                <div className="grid gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 items-center justify-center align-center">
                     {team.map((member, index) => (
                         <motion.div
                             key={member.name}
@@ -36,7 +36,7 @@ export function Team() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="relative aspect-[3/4] overflow-hidden rounded-xl bg-zinc-900 border border-white/10 group backdrop-blur-lg"
+                            className="relative aspect-[3/4] overflow-hidden rounded-xl bg-zinc-900 group backdrop-blur-lg"
                         >
                             <img
                                 src={member.image}

@@ -29,34 +29,34 @@ export function Hero() {
         >
           <div className="relative z-10 text-center mb-18"
           >
-            <h1 className="text-6xl md:text-9xl font-black text-white mb-6 tracking-tighter relative">
+            <h1 className="text-4xl sm:text-6xl md:text-9xl font-black text-white mb-6 tracking-tighter relative">
               <span className="absolute -inset-1 blur-2xl bg-neon-cyan/20 rounded-full pointer-events-none" />
               <HyperText text="HACKSPIRATION'26" className="relative z-10" />
             </h1>
             {/* Chips */}
-            <div className="flex flex-col md:flex-row gap-3 items-center justify-center mt-5 mb-9">
+            <div className="flex flex-row gap-3 items-center justify-center mt-5 mb-9">
               <div className="flex items-center gap-3 px-4 py-2 bg-zinc-900 rounded-md backdrop-blur-md group">
-                <span className="text-neon-magenta font-[family-name:var(--font-orbitron)] font-bold tracking-wider text-sm">
+                <span className="text-neon-magenta font-[family-name:var(--font-orbitron)] font-bold tracking-wider text-xs">
                   24 HOUR HACKATHON
                 </span>
               </div>
               <div className="flex items-center gap-3 px-4 py-2 bg-zinc-900 rounded-md backdrop-blur-md group">
-                <span className="text-neon-cyan font-[family-name:var(--font-orbitron)] font-bold tracking-wider text-sm">
+                <span className="text-neon-cyan font-[family-name:var(--font-orbitron)] font-bold tracking-wider text-xs">
                   VIT Pune
                 </span>
               </div>
             </div>
-            <div className="text-xl md:text-2xl text-zinc-400 font-mono max-w-2xl mx-auto flex justify-center">
+            <div className="text-md md:text-2xl text-zinc-400 font-mono max-w-2xl mx-auto flex justify-center">
               <StaggeredText text="A thrilling 24-hour offline hackathon merging innovation with game-show excitement" delay={0.01} staggerDelay={0.01} className="justify-center" />
             </div>
           </div>
         </div>
 
         <div className="w-full flex-row mb-6 items-center justify-center">
-          <div className="flex flex-col gap-8 sm:flex-row items-center justify-center">
+          <div className="flex flex-col md:gap-8 gap-5 sm:flex-row items-center justify-center">
             <CyberpunkButton
               variant="primary"
-              className="text-md py-5 px-12 group"
+              className="md:text-lg text-xs md:py-5 md:px-12 sm:py-4 sm:px-8"
             >
               REGISTER NOW
               <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -64,7 +64,7 @@ export function Hero() {
 
             <CyberpunkButton
               variant="secondary"
-              className="text-md py-5 px-12"
+              className="md:text-lg text-xs md:py-5 md:px-12 sm:py-4 sm:px-8"
             >
               <Terminal className="h-5 w-5 mr-2" />
               JOIN DISCORD

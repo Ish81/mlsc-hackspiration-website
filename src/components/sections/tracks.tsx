@@ -4,6 +4,7 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Brain, Shield, Gamepad2, ExternalLink, Copy, Check, ChevronRight, Terminal, Megaphone, Lock } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Button } from "../ui/button"
 
 const tracks = [
     {
@@ -47,6 +48,21 @@ const tracks = [
             { id: "PS-602", title: "AR Navigation", description: "Indoor navigation system for large venues like airports. Overlay directional arrows and points of interest on the real world to help users find their way easily." },
             { id: "PS-603", title: "Social Impact Game", description: "Indie game that raises awareness about social issues. Use storytelling and gameplay mechanics to educate players about topics like climate change or inequality." }
         ]
+    },
+    {
+        id: "contest",
+        title: "Viral Velocity",
+        description: "Participate in our social media challenges and win exclusive swag!",
+        description2: "Most viral posts on LinkedIn and X win.",
+        icon: Megaphone,
+        color: "text-blue-500",
+        borderColor: "border-blue-500",
+        bgGradient: "from-blue-500/10",
+        problems: [],
+        cta: {
+            text: "Submit entry",
+            href: "/contest"
+        }
     }
 ]
 
@@ -83,46 +99,6 @@ export function Tracks() {
                             isDimmed={activeTrack !== null && activeTrack !== track.id}
                         />
                     ))}
-
-                    {/* Viral Velocity Standalone Box */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="relative rounded-xl border border-yellow-400/50 bg-yellow-400/5 overflow-hidden p-5 flex flex-col md:flex-row items-center justify-between gap-6 group hover:border-yellow-400 transition-colors duration-300"
-                    >
-                        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20" />
-                        <div className="absolute -right-20 -top-20 w-64 h-64 bg-yellow-400/20 rounded-full blur-3xl group-hover:bg-yellow-400/30 transition-all duration-500" />
-
-                        <div className="relative z-10 flex items-center gap-6">
-                            <div className="h-16 w-16 rounded-lg bg-yellow-400/10 border border-yellow-400/30 flex items-center justify-center text-yellow-400 transition-transform duration-300">
-                                <Megaphone className="h-8 w-8" />
-                            </div>
-                            <div>
-                                <div className="flex items-center gap-3 mb-2">
-                                    <h3 className="text-xl md:text-2xl font-bold font-[family-name:var(--font-orbitron)] uppercase tracking-tight text-white">
-                                        Viral <span className="text-yellow-400">Velocity</span>
-                                    </h3>
-                                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-yellow-400 text-black uppercase tracking-wider">
-                                        Bonus
-                                    </span>
-                                </div>
-                                <p className="text-zinc-400 font-mono max-w-xl">
-                                    Participate in our social media challenges and win exclusive swag! Most viral posts on LinkedIn and X win.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="relative z-10 shrink-0">
-                            <a
-                                href="/contest"
-                                className="inline-flex items-center gap-2 px-8 py-4 bg-yellow-400 text-black font-bold font-[family-name:var(--font-orbitron)] uppercase tracking-wider rounded hover:bg-yellow-300 transition-colors"
-                            >
-                                Submit Entry
-                                <ExternalLink className="h-4 w-4" />
-                            </a>
-                        </div>
-                    </motion.div>
                 </div>
             </div>
         </section>
@@ -134,7 +110,8 @@ function MissionModule({ track, isActive, onToggle, isDimmed }: { track: any, is
         <div
             className={cn(
                 "relative rounded-xl border duration-500 overflow-hidden",
-                isActive ? `bg-zinc-900/80 border-${track.color.split('-')[1]} shadow-[0_0_30px_rgba(0,0,0,0.5)]` : "bg-zinc-900/80 border-white/10 hover:border-white/30"
+                isActive ? `bg-zinc-900/80 border-${track.color.split('-')[1]} shadow-[0_0_30px_rgba(0,0,0,0.5)]` : "bg-zinc-900/80 border-white/10 hover:border-white/30",
+                track.id === "contest" ? "border border-yellow-400/50 bg-yellow-400/5" : ""
             )}
         >
             {/* Active Pulse Border */}
@@ -146,35 +123,73 @@ function MissionModule({ track, isActive, onToggle, isDimmed }: { track: any, is
             )}
 
             <button
-                onClick={onToggle}
+                onClick={() => {
+                    if (track.id === "contest") {
+                        window.location.href = "/contest";
+                    } else {
+                        onToggle();
+                    }
+                }}
                 className="relative z-10 w-full p-5 md:p-6 flex items-center justify-between text-left group"
             >
                 <div className="flex items-center gap-6">
                     <div className={cn(
-                        "h-16 w-16 rounded-lg flex items-center justify-center border transition-all duration-300",
-                        isActive ? `bg-black ${track.color}` : "bg-zinc-800 border-white/10 text-zinc-500 group-hover:text-white group-hover:border-white/30"
+                        "md:h-16 md:w-16 h-10 w-12 rounded-lg flex items-center justify-center border transition-all duration-300",
+                        isActive ? `bg-black ${track.color}` : "bg-zinc-800 border-white/10 text-zinc-500 group-hover:text-white group-hover:border-white/30",
+                        track.id === "contest" ? "border border-yellow-400/50 bg-yellow-400/5 text-yellow-400" : ""
                     )}>
-                        <track.icon className="h-8 w-8" />
+                        <track.icon className="md:h-8 md:w-8 h-6 w-6" />
                     </div>
                     <div>
-                        <h3 className={cn(
-                            "text-xl md:text-2xl font-bold font-[family-name:var(--font-orbitron)] uppercase tracking-tight transition-colors",
-                            isActive ? "text-white" : "text-zinc-400 group-hover:text-white"
-                        )}>
-                            {track.title}
-                        </h3>
-                        <p className="text-zinc-500 text-sm md:text-base mt-1">
+
+                        {
+                            track.id === "contest" ? (
+                                <div className="flex items-center gap-3 mb-2">
+                                    <h3 className="text-xl md:text-2xl font-bold font-[family-name:var(--font-orbitron)] uppercase tracking-tight text-white">
+                                        Viral <span className="text-yellow-400">Velocity</span>
+                                    </h3>
+                                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-yellow-400 text-black uppercase tracking-wider">
+                                        Bonus
+                                    </span>
+                                </div>
+                            ) : (
+                                <h3 className={cn(
+                                    "text-xl md:text-2xl font-bold font-[family-name:var(--font-orbitron)] uppercase tracking-tight transition-colors",
+                                    isActive ? "text-white" : "text-zinc-400 group-hover:text-white"
+                                )}>
+                                    {track.title}
+                                </h3>
+                            )
+                        }
+                        <p className="text-zinc-500 text-sm md:text-base mt-1 me-3">
                             {track.description}
+                        </p>
+                        <p className="text-zinc-500 text-sm md:text-base mt-1 me-3">
+                            {track.description2}
                         </p>
                     </div>
                 </div>
 
-                <div className={cn(
-                    "h-10 w-10 rounded-full border flex items-center justify-center transition-all duration-300",
-                    isActive ? `border-${track.color.split('-')[1]} bg-${track.color.split('-')[1]}/10 text-white rotate-90` : "border-white/10 text-zinc-500 group-hover:border-white/30"
-                )}>
-                    <ChevronRight className="h-5 w-5" />
-                </div>
+                {track.cta && (
+                    <div className="relative z-10 shrink-0">
+                        <a
+                            href={track.cta.href}
+                            className="inline-flex items-center gap-2 px-8 py-4 bg-yellow-400 text-black font-bold font-[family-name:var(--font-orbitron)] uppercase tracking-wider rounded hover:bg-yellow-300 transition-colors"
+                        >
+                            {track.cta.text}
+                            <ExternalLink className="h-4 w-4" />
+                        </a>
+                    </div>
+                )}
+
+                {track.problems.length > 0 && (
+                    <div className={cn(
+                        "h-10 w-10 rounded-full border flex items-center justify-center transition-all duration-300",
+                        isActive ? `border-${track.color.split('-')[1]} bg-${track.color.split('-')[1]}/10 text-white rotate-90` : "border-white/10 text-zinc-500 group-hover:border-white/30"
+                    )}>
+                        <ChevronRight className="h-5 w-5" />
+                    </div>
+                )}
             </button>
 
             <AnimatePresence>

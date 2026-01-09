@@ -102,7 +102,7 @@ export function Timeline() {
 
                 <div className="relative max-w-5xl mx-auto">
                     {/* Central Data Spine */}
-                    <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-zinc-900 -translate-x-1/2 overflow-hidden">
+                    <div className="absolute left-10 md:left-1/2 top-0 bottom-0 w-1 bg-zinc-900 -translate-x-1/2 overflow-hidden">
                         {/* <motion.div
                             style={{ scaleY, transformOrigin: "top" }}
                             className="w-full h-full bg-neon-cyan shadow-[0_0_20px_#00E5FF]"
@@ -144,7 +144,7 @@ function TimelineNode({ event, index, status }: { event: any, index: number, sta
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5, delay: index * 0.05 }}
-            className={`flex flex-col md:flex-row gap-4 md:gap-8 items-center ${isLeft ? "md:flex-row-reverse" : ""}`}
+            className={cn("flex gap-4 md:gap-8 items-center flex-row-reverse", isLeft ? "md:flex-row-reverse" : "md:flex-row")}
         >
             {/* Content Card */}
             <div className="flex-1 w-full md:w-auto">
@@ -200,7 +200,7 @@ function TimelineNode({ event, index, status }: { event: any, index: number, sta
                 {/* Horizontal Connector Line */}
                 <div className={cn(
                     "absolute top-1/2 w-4 md:w-8 h-0.5 -translate-y-1/2 transition-colors duration-500",
-                    isLeft ? "left-full" : "right-full",
+                    "right-full", isLeft ? "md:left-full md:right-auto" : "md:right-full md:left-auto",
                     status === 'active' ? "bg-neon-cyan  animate-pulse" : "bg-zinc-800"
                 )} />
             </div>

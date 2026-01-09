@@ -126,10 +126,12 @@ export function FAQ() {
                   <AccordionItem
                     key={`faq-${groupIndex}-${index}`}
                     value={`faq-${groupIndex}-${index}`}
-                    className="glitch-card px-5 py-1 border border-zinc-800"
+                    className="px-5 py-1 border border-zinc-800 overflow-hidden"
                   >
                     <AccordionTrigger className="text-left text-white hover:text-neon-cyan hover:no-underline text-lg user-select-all" key={`trigger-${groupIndex}-${index}`}>
-                      {faq.question}
+                      <p className="me-2">
+                        {faq.question}
+                      </p>
                     </AccordionTrigger>
 
                     <AccordionContent className="text-zinc-400 leading-relaxed text-lg user-select-all" key={`content-${groupIndex}-${index}`}>

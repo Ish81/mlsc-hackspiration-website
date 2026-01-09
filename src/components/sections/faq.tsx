@@ -110,7 +110,7 @@ export function FAQ() {
             <span className="text-neon-purple">Questions</span>
           </h2>
           <p className="text-zinc-400 text-lg">
-            Clear answers to the most common queries about Hackpiration’26.
+            Got questions? We've got answers!
           </p>
         </motion.div>
 

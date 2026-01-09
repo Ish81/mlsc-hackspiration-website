@@ -359,6 +359,49 @@ body {
   100% { clip-path: inset(80% 0 5% 0); }
 }
 
+/* New Glitch Variations */
+.glitch-rgb {
+  text-shadow: 
+    2px 0 #00E5FF, 
+    -2px 0 #FF2D95;
+  animation: glitch-rgb-anim 0.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-rgb-anim {
+  0% { text-shadow: 2px 0 #00E5FF, -2px 0 #FF2D95; }
+  25% { text-shadow: -2px 0 #00E5FF, 2px 0 #FF2D95; }
+  50% { text-shadow: 2px -2px #00E5FF, -2px 2px #FF2D95; }
+  75% { text-shadow: -2px -2px #00E5FF, 2px 2px #FF2D95; }
+  100% { text-shadow: 1px 0 #00E5FF, -1px 0 #FF2D95; }
+}
+
+.glitch-skew {
+  animation: glitch-skew-anim 0.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-skew-anim {
+  0% { transform: skew(0deg); }
+  20% { transform: skew(-10deg); }
+  40% { transform: skew(10deg); }
+  60% { transform: skew(-5deg); }
+  80% { transform: skew(5deg); }
+  100% { transform: skew(0deg); }
+}
+
+.glitch-cut {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  animation: glitch-cut-anim 0.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-cut-anim {
+  0% { clip-path: inset(0 0 0 0); }
+  20% { clip-path: inset(20% 0 0 0); }
+  40% { clip-path: inset(0 0 20% 0); }
+  60% { clip-path: inset(10% 0 40% 0); }
+  80% { clip-path: inset(40% 0 10% 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+
 /* FAQ Glitch Card Style */
 .glitch-card {
   border: 1px solid rgba(255, 255, 255, 0.1);

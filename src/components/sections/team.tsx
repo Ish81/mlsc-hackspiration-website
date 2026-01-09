@@ -23,15 +23,12 @@ export function Team() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                    <h2 className="text-4xl md:text-6xl font-black text-white mb-4 tracking-[0.3em] uppercase">
                         Meet the <span className="text-neon-cyan">Team</span>
                     </h2>
-                    <p className="text-zinc-400 text-xl">
-                        The minds behind Hackpiration'26.
-                    </p>
                 </motion.div>
 
-                <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center items-center">
+                <div className="grid gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 items-center justify-center align-center">
                     {team.map((member, index) => (
                         <motion.div
                             key={member.name}
@@ -39,23 +36,29 @@ export function Team() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="group relative rounded-sm bg-[#060b22]"
+                            className="relative aspect-[3/4] overflow-hidden rounded-xl bg-zinc-900 border border-white/10 group backdrop-blur-lg"
                         >
-                            <div className="glitch-image-box w-full h-full p-5">
-                                <img
-                                    src={member.image}
-                                    alt={member.name}
-                                    className="w-full h-full object-cover aspect-square"
-                                />
-                            </div>
+                            <img
+                                src={member.image}
+                                alt={member.name}
+                                className="w-full h-full object-cover"
+                            />
 
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent duration-300 flex flex-col justify-end p-6 pointer-events-none">
-                                <h3 className="text-xl font-bold text-white">{member.name}</h3>
-                                <p className="text-neon-cyan text-sm mb-4">{member.role}</p>
-                                <div className="flex gap-4 pointer-events-auto">
-                                    {member.github && <a href={member.github} target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white"><Github className="h-5 w-5" /></a>}
-                                    {member.linkedin && <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white"><Linkedin className="h-5 w-5" /></a>}
-                                    {member.twitter && <a href={member.twitter} target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white"><Twitter className="h-5 w-5" /></a>}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                            {/* Member Info*/}
+                            <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col items-center text-center">
+                                <h3 className="text-xl font-bold text-white tracking-tight mb-1">
+                                    {member.name}
+                                </h3>
+                                <p className="text-zinc-400 text-sm font-medium uppercase tracking-widest">
+                                    {member.role}
+                                </p>
+
+                                {/* Subtle Socials */}
+                                <div className="flex gap-4 mt-4 opacity-40 hover:opacity-100 transition-opacity">
+                                    {member.github && <a href={member.github} target="_blank" rel="noopener noreferrer" className="text-white hover:text-neon-cyan transition-colors"><Github className="h-5 w-5" /></a>}
+                                    {member.linkedin && <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-white hover:text-neon-cyan transition-colors"><Linkedin className="h-5 w-5" /></a>}
+                                    {member.twitter && <a href={member.twitter} target="_blank" rel="noopener noreferrer" className="text-white hover:text-neon-cyan transition-colors"><Twitter className="h-5 w-5" /></a>}
                                 </div>
                             </div>
                         </motion.div>

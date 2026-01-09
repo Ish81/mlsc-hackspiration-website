@@ -39,13 +39,19 @@ export function Countdown() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="inline-block"
+                    className="inline-block bg-black/40 backdrop-blur-xl border border-white/5 p-8 md:p-12 rounded-2xl relative overflow-hidden group"
                 >
-                    <p className="text-neon-cyan font-mono mb-8 tracking-widest uppercase text-sm md:text-base">
-                        {targetDateLabel}:
+                    {/* Module Accents */}
+                    <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-neon-cyan/30" />
+                    <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-neon-cyan/30" />
+                    <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-neon-cyan/30" />
+                    <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon-cyan/30" />
+
+                    <p className="text-neon-cyan/60 font-mono mb-10 tracking-[0.2em] uppercase text-md flex items-center justify-center gap-3">
+                        {targetDateLabel}
                     </p>
 
-                    <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+                    <div className="flex flex-nowrap justify-center gap-2 md:gap-8">
                         <TimeUnit value={timeLeft.days} label="DAYS" />
                         <TimeUnit value={timeLeft.hours} label="HOURS" />
                         <TimeUnit value={timeLeft.minutes} label="MINS" />
@@ -60,18 +66,18 @@ export function Countdown() {
 function TimeUnit({ value, label, isLast }: { value: number, label: string, isLast?: boolean }) {
     return (
         <div className="flex flex-col items-center">
-            <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-neon-cyan to-neon-purple rounded-lg opacity-10 group-hover:opacity-50 transition duration-500" />
-                <div className="relative border border-white/10 w-24 h-32 md:w-40 md:h-32 rounded-lg flex items-center justify-center overflow-hidden">
-                    {/* Scanline Overlay */}
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%] pointer-events-none opacity-20" />
+            <div className="relative group/unit">
+                <div className="absolute -inset-1 bg-gradient-to-r from-neon-cyan to-neon-purple rounded-lg opacity-0 group-hover/unit:opacity-20 transition duration-500 blur-xl" />
+                <div className="relative border border-white/10 w-20 h-28 md:w-32 md:h-32 rounded-lg flex items-center justify-center overflow-hidden bg-zinc-900/20">
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] bg-[length:100%_4px,4px_100%] pointer-events-none opacity-40 group-hover/unit:opacity-60 transition-opacity" />
 
-                    <span className="font-mono text-4xl md:text-6xl font-bold text-white tracking-tighter group-hover:text-neon-cyan transition-colors duration-300">
+
+                    <span className="font-mono text-2xl md:text-5xl font-black text-white tracking-tighter group-hover/unit:text-neon-cyan transition-colors duration-300 drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]">
                         {value.toString().padStart(2, '0')}
                     </span>
                 </div>
             </div>
-            <span className="mt-4 text-zinc-500 font-mono text-xs md:text-sm tracking-widest">{label}</span>
+            <span className="mt-4 text-zinc-600 font-mono text-[10px] md:text-xs tracking-[0.3em] uppercase">{label}</span>
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, JetBrains_Mono } from "next/font/google";
+import { Outfit, JetBrains_Mono, Orbitron } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/layout/navbar";
@@ -17,9 +17,14 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
+const orbitron = Orbitron({
+  variable: "--font-orbitron",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "Hackpiration'26 | MLSC VIT Pune",
-  description: "Hack. Hustle. Win. The biggest cyberpunk hackathon at VIT Pune.",
+  description: "Hack. Hustle. Win. The biggest 24hr hackathon at VIT Pune.",
 };
 
 export default function RootLayout({
@@ -30,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${outfit.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground font-sans cursor-none`}
+        className={`${outfit.variable} ${jetbrainsMono.variable} ${orbitron.variable} antialiased bg-background text-foreground font-sans cursor-none`}
       >
         <CustomCursor />
         <div className="bg-noise" />

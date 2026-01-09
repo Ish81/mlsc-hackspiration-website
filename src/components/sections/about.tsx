@@ -5,67 +5,54 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card" 
 import { Cpu, Globe, Zap } from "lucide-react"
 
 export function About() {
-    // Gallery images for the carousel
     const galleryImages = Array.from({ length: 10 }, (_, i) => `/images/past-events/${i + 1}.jpg`);
-    // Duplicate images for seamless loop
     const carouselImages = [...galleryImages, ...galleryImages];
 
     return (
-        <section id="about" className="py-24 relative overflow-hidden bg-zinc-950">
+        <section id="about" className="py-24 relative overflow-hidden bg-zinc-950 min-h-screen items-center justify-center flex">
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 <div className="grid gap-12 lg:grid-cols-2 items-center mb-16">
-
-                    {/* MLSC Section */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h2 className="text-4xl md:text-7xl font-bold text-white mb-6">
-                            About Us
+                        <h2 className="text-4xl md:text-7xl font-black text-white mb-6 tracking-[0.1em] uppercase">
+                            About
                         </h2>
                         <p className="text-zinc-400 text-lg leading-relaxed mb-6">
                             MLSC VIT Pune is a dynamic tech community operating under the aegis of Microsoft, guided by the on-campus Microsoft Learn Student Ambassador. We are dedicated to empowering students by offering a platform to develop both technical and non-technical skills.
                         </p>
-                        <p className="text-zinc-400 text-lg leading-relaxed">
-                            With a strong focus on fostering a culture of Open Source Collaboration and Skill Development, MLSC VIT Pune drives innovation through events, projects, and hackathons.
+                        <p className="text-gray-400 text-lg leading-relaxed mt-6 font-semibold">
+                            Hackspiration 26 is our annual 24-hour hackathon where we invite students from all over the world to showcase their skills and creativity.
                         </p>
                     </motion.div>
 
-                    {/* Stats/Mission Cards */}
-                    <div className="relative h-[400px] w-full hidden lg:block">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
-                            className="absolute top-0 right-0 w-72 bg-zinc-900/80 backdrop-blur-md border border-white/10 p-6 rounded-xl z-20"
-                        >
-                            <Zap className="h-8 w-8 text-neon-cyan mb-4" />
-                            <h3 className="text-xl font-bold text-white mb-2">Our Mission</h3>
-                            <p className="text-zinc-400 text-sm">
-                                To foster a community of young innovators and provide them with the platform to transform their ideas into reality.
+                    <motion.div
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+                    >
+                        <div className="p-6 rounded-xl bg-zinc-900/50 border border-white/10 hover:border-neon-cyan/50 transition-colors group">
+                            <h3 className="text-5xl font-black text-white mb-2 font-[family-name:var(--font-orbitron)] group-hover:text-neon-cyan transition-colors">
+                                1000+
+                            </h3>
+                            <p className="text-zinc-400 font-medium uppercase tracking-wider text-sm">
+                                Participants Expected
                             </p>
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.4 }}
-                            className="absolute bottom-0 left-10 w-72 bg-zinc-900/80 backdrop-blur-md border border-white/10 p-6 rounded-xl z-10"
-                        >
-                            <Cpu className="h-8 w-8 text-neon-purple mb-4" />
-                            <h3 className="text-xl font-bold text-white mb-2">Hackspiration'26</h3>
-                            <p className="text-zinc-400 text-sm">
-                                A thrilling 25-hour offline hackathon merging innovation with game-show excitement.
+                        </div>
+                        <div className="p-6 rounded-xl bg-zinc-900/50 border border-white/10 hover:border-neon-magenta/50 transition-colors group">
+                            <h3 className="text-5xl font-black text-white mb-2 font-[family-name:var(--font-orbitron)] group-hover:text-neon-magenta transition-colors">
+                                24hrs
+                            </h3>
+                            <p className="text-zinc-400 font-medium uppercase tracking-wider text-sm">
+                                Of Innovation
                             </p>
-                        </motion.div>
-
-                        {/* Decorative Elements */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-neon-purple/20 to-neon-cyan/20 blur-3xl -z-10 rounded-full" />
-                    </div>
+                        </div>
+                    </motion.div>
                 </div>
 
                 {/* Sliding Gallery Carousel */}

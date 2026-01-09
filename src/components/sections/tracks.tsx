@@ -2,9 +2,8 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Brain, Shield, Gamepad2, ExternalLink, Copy, Check, ChevronRight, Terminal, Megaphone } from "lucide-react"
+import { Brain, Shield, Gamepad2, ExternalLink, Copy, Check, ChevronRight, Terminal, Megaphone, Lock } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { ScrollReveal } from "@/components/ui/scroll-animations"
 
 const tracks = [
     {
@@ -25,7 +24,7 @@ const tracks = [
         id: "track-02",
         title: "Cybersecurity",
         description: "Protect systems from digital threats and vulnerabilities.",
-        icon: Shield,
+        icon: Lock,
         color: "text-green-400",
         borderColor: "border-green-400",
         bgGradient: "from-green-400/10",
@@ -66,10 +65,10 @@ export function Tracks() {
                     viewport={{ once: true }}
                     className="mb-20 text-center"
                 >
-                    <h2 className="text-4xl md:text-6xl font-black text-white mb-4 tracking-tighter uppercase">
+                    <h2 className="text-4xl md:text-6xl font-black text-white mb-4 tracking-[0.1em] uppercase">
                         <span className="text-neon-cyan">Tracks</span>
                     </h2>
-                    <p className="text-zinc-400 font-mono text-lg">
+                    <p className="text-zinc-400 text-lg">
                         Select a domain to view the problems statements.
                     </p>
                 </motion.div>
@@ -96,12 +95,12 @@ export function Tracks() {
                         <div className="absolute -right-20 -top-20 w-64 h-64 bg-yellow-400/20 rounded-full blur-3xl group-hover:bg-yellow-400/30 transition-all duration-500" />
 
                         <div className="relative z-10 flex items-center gap-6">
-                            <div className="h-16 w-16 rounded-lg bg-yellow-400/10 border border-yellow-400/30 flex items-center justify-center text-yellow-400 group-hover:scale-110 transition-transform duration-300">
+                            <div className="h-16 w-16 rounded-lg bg-yellow-400/10 border border-yellow-400/30 flex items-center justify-center text-yellow-400 transition-transform duration-300">
                                 <Megaphone className="h-8 w-8" />
                             </div>
                             <div>
                                 <div className="flex items-center gap-3 mb-2">
-                                    <h3 className="text-xl md:text-2xl font-bold font-mono uppercase tracking-tight text-white">
+                                    <h3 className="text-xl md:text-2xl font-bold font-[family-name:var(--font-orbitron)] uppercase tracking-tight text-white">
                                         Viral <span className="text-yellow-400">Velocity</span>
                                     </h3>
                                     <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-yellow-400 text-black uppercase tracking-wider">
@@ -117,7 +116,7 @@ export function Tracks() {
                         <div className="relative z-10 shrink-0">
                             <a
                                 href="/contest"
-                                className="inline-flex items-center gap-2 px-8 py-4 bg-yellow-400 text-black font-bold font-mono uppercase tracking-wider rounded hover:bg-yellow-300 transition-colors"
+                                className="inline-flex items-center gap-2 px-8 py-4 bg-yellow-400 text-black font-bold font-[family-name:var(--font-orbitron)] uppercase tracking-wider rounded hover:bg-yellow-300 transition-colors"
                             >
                                 Submit Entry
                                 <ExternalLink className="h-4 w-4" />
@@ -132,11 +131,10 @@ export function Tracks() {
 
 function MissionModule({ track, isActive, onToggle, isDimmed }: { track: any, isActive: boolean, onToggle: () => void, isDimmed: boolean }) {
     return (
-        <motion.div
-            animate={{ opacity: isDimmed ? 0.3 : 1 }}
+        <div
             className={cn(
                 "relative rounded-xl border duration-500 overflow-hidden",
-                isActive ? `bg-zinc-900/80 border-${track.color.split('-')[1]} shadow-[0_0_30px_rgba(0,0,0,0.5)]` : "bg-zinc-900/30 border-white/10 hover:border-white/30"
+                isActive ? `bg-zinc-900/80 border-${track.color.split('-')[1]} shadow-[0_0_30px_rgba(0,0,0,0.5)]` : "bg-zinc-900/80 border-white/10 hover:border-white/30"
             )}
         >
             {/* Active Pulse Border */}
@@ -160,12 +158,12 @@ function MissionModule({ track, isActive, onToggle, isDimmed }: { track: any, is
                     </div>
                     <div>
                         <h3 className={cn(
-                            "text-xl md:text-2xl font-bold font-mono uppercase tracking-tight transition-colors",
+                            "text-xl md:text-2xl font-bold font-[family-name:var(--font-orbitron)] uppercase tracking-tight transition-colors",
                             isActive ? "text-white" : "text-zinc-400 group-hover:text-white"
                         )}>
                             {track.title}
                         </h3>
-                        <p className="text-zinc-500 text-sm md:text-base font-mono mt-1">
+                        <p className="text-zinc-500 text-sm md:text-base mt-1">
                             {track.description}
                         </p>
                     </div>
@@ -202,7 +200,7 @@ function MissionModule({ track, isActive, onToggle, isDimmed }: { track: any, is
                     </motion.div>
                 )}
             </AnimatePresence>
-        </motion.div>
+        </div>
     )
 }
 
@@ -217,10 +215,7 @@ function MissionCard({ problem, index, color, borderColor }: { problem: any, ind
     }
 
     return (
-        <motion.div
-            initial={{ x: -20, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: index * 0.1, duration: 0.3 }}
+        <div
             className={cn(
                 "group relative p-6 rounded-lg bg-black/40 border border-white/5 hover:border-white/20 duration-300 hover:-translate-y-1 hover:shadow-lg",
                 `hover:${borderColor}`
@@ -236,7 +231,7 @@ function MissionCard({ problem, index, color, borderColor }: { problem: any, ind
                             {problem.title}
                         </h4>
                     </div>
-                    <p className="text-zinc-400 text-sm leading-relaxed font-mono">
+                    <p className="text-zinc-400 text-sm leading-relaxed">
                         {problem.description}
                     </p>
                 </div>
@@ -252,7 +247,7 @@ function MissionCard({ problem, index, color, borderColor }: { problem: any, ind
                     <a
                         href="#"
                         className={cn(
-                            "flex items-center gap-2 px-4 py-2 rounded text-xs font-bold font-mono uppercase tracking-wider border transition-all",
+                            "flex items-center gap-2 px-4 py-2 rounded text-xs font-bold font-[family-name:var(--font-orbitron)] uppercase tracking-wider border transition-all",
                             `border-white/10 hover:bg-${color.split('-')[1]}/10 hover:${borderColor} ${color}`
                         )}
                     >
@@ -260,6 +255,6 @@ function MissionCard({ problem, index, color, borderColor }: { problem: any, ind
                     </a>
                 </div>
             </div>
-        </motion.div>
+        </div>
     )
 }

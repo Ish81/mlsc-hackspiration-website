@@ -1,131 +1,115 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Calendar, Users, Trophy } from "lucide-react"
+import { cn } from "@/lib/utils"
 
-const pastEvents = [
+const galleryImages = [
     {
-        name: "Hackspiration '24",
-        date: "April 2024",
-        type: "Hackathon",
-        stats: "1000+ Registrations",
-        prize: "$6000+ Prize Pool",
-        color: "border-neon-cyan/50",
-        image: "/images/past-events/Hackspiration241.png"
+        src: "/images/past-events/ILOVEHACKATHON1.jpg",
+        title: "I LOVE HACKATHON",
+        className: "md:col-span-1 md:row-span-1",
     },
     {
-        name: "I Love Hackathon",
-        date: "December 2024",
-        type: "Hackathon",
-        stats: "24 Hours In-Person",
-        prize: "VIT Pune",
-        color: "border-neon-purple/50",
-        image: "/images/past-events/ILOVEHACKATHON1.jpg"
+        src: "/images/past-events/4.jpg",
+        title: "SYSTEM LOG 04",
+        className: "md:col-span-1 md:row-span-2",
     },
     {
-        name: "Designathon",
-        date: "Feb 2024",
-        type: "Design Hack",
-        stats: "2 Days Online",
-        prize: "UI/UX Focused",
-        color: "border-pink-500/50",
-        image: "/images/past-events/Designathon2.jpg"
+        src: "/images/past-events/Designathon2.jpg",
+        title: "DESIGNATHON",
+        className: "md:col-span-2 md:row-span-1",
     },
     {
-        name: "Beyond the Browser",
-        date: "October 2024",
-        type: "Workshop",
-        stats: "400+ Attendees",
-        prize: "Web2 Fundamentals",
-        color: "border-yellow-400/50",
-        image: "/images/past-events/BeyondtheBrowsers1.jpg"
+        src: "/images/past-events/BeyondtheBrowsers1.jpg",
+        title: "BEYOND THE BROWSER",
+        className: "md:col-span-1 md:row-span-1c",
     },
     {
-        name: "Web3 Odyssey",
-        date: "2024",
-        type: "Hackathon",
-        stats: "Web3 Focused",
-        prize: "Blockchain",
-        color: "border-blue-500/50",
-        image: "/images/past-events/WEB3ODYSSEY1.jpg"
+        src: "/images/past-events/CLOUDWARS1.jpg",
+        title: "CLOUD WARS",
+        className: "md:col-span-2 md:row-span-2",
     },
     {
-        name: "Cloud Wars",
-        date: "2024",
-        type: "Competition",
-        stats: "Cloud Computing",
-        prize: "DevOps",
-        color: "border-sky-500/50",
-        image: "/images/past-events/CLOUDWARS1.jpg"
-    }
+        src: "/images/past-events/WEB3ODYSSEY1.jpg",
+        title: "WEB3 ODYSSEY",
+        className: "md:col-span-2 md:row-span-2",
+    },
+    {
+        src: "/images/past-events/2.jpg",
+        title: "SYSTEM LOG 02",
+        className: "md:col-span-2 md:row-span-2",
+    },
+    {
+        src: "/images/past-events/1.jpg",
+        title: "SYSTEM LOG 01",
+        className: "md:col-span-1 md:row-span-1",
+    },
+    {
+        src: "/images/past-events/9.jpg",
+        title: "SYSTEM LOG 09",
+        className: "md:col-span-1 md:row-span-1",
+    },
 ]
 
 
 export function PastEvents() {
     return (
-        <section id="past-events" className="py-24 bg-zinc-950">
-            <div className="container mx-auto px-4 md:px-6">
+        <section id="gallery" className="py-24 bg-black relative overflow-hidden">
+            <div className="container mx-auto px-4 md:px-6 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                        Past <span className="text-neon-purple">Events</span>
+                    <h2 className="text-4xl md:text-6xl font-black text-white mb-4 tracking-[0.3em] uppercase">
+                        GALLERY
                     </h2>
-                    <p className="text-zinc-400 text-xl">
-                        Relive the moments from our previous events.
-                    </p>
                 </motion.div>
 
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-16">
-                    {pastEvents.map((event, index) => (
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[150px] md:auto-rows-[200px]">
+                    {galleryImages.map((image, index) => (
                         <motion.div
-                            key={event.name}
+                            key={index}
                             initial={{ opacity: 0, scale: 0.9 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className={`rounded-xl border ${event.color} bg-zinc-900/50 hover:bg-zinc-900 transition-colors group overflow-hidden`}
+                            transition={{ delay: index * 0.05 }}
+                            className={cn(
+                                "relative group overflow-hidden rounded-2xl md:rounded-3xl border border-white/5 bg-zinc-900/50",
+                                image.className
+                            )}
                         >
-                            <div className="h-48 w-full relative overflow-hidden">
-                                <div className="glitch-image-box w-full h-full">
-                                    <img
-                                        src={event.image}
-                                        alt={event.name}
-                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                    />
-                                </div>
-                            </div>
-                            <div className="p-6">
-                                <div className="flex justify-between items-start mb-4">
-                                    <span className="text-xs font-mono text-zinc-500 border border-zinc-700 px-2 py-1 rounded">
-                                        {event.type}
-                                    </span>
-                                    <Calendar className="h-4 w-4 text-zinc-500" />
-                                </div>
-                                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">
-                                    {event.name}
-                                </h3>
-                                <p className="text-zinc-400 text-sm mb-4">{event.date}</p>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+                            <img
+                                src={image.src}
+                                alt={image.title}
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            />
 
-                                <div className="space-y-2">
-                                    <div className="flex items-center gap-2 text-sm text-zinc-300">
-                                        <Users className="h-4 w-4 text-zinc-500" />
-                                        {event.stats}
+                            {/* Cybersec Title Overlay */}
+                            <div className="absolute bottom-0 left-0 right-0 p-4 z-20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out">
+                                <div className="flex flex-col gap-1">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-1 h-3 bg-neon-cyan" />
+                                        <span className="text-[10px] font-mono text-neon-cyan/60 tracking-widest uppercase">
+                                            {/* [ FILE_ID: {index.toString().padStart(2, '0')} ] */}
+                                        </span>
                                     </div>
-                                    <div className="flex items-center gap-2 text-sm text-zinc-300">
-                                        <Trophy className="h-4 w-4 text-zinc-500" />
-                                        {event.prize}
-                                    </div>
+                                    <h3 className="text-sm md:text-base font-mono font-bold text-white tracking-wider uppercase">
+                                        {image.title}
+                                    </h3>
                                 </div>
                             </div>
+
+                            {/* Technical Corner Accents*/}
+                            <div className="absolute top-4 left-4 w-2 h-2 border-t border-l border-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <div className="absolute bottom-4 right-4 w-2 h-2 border-b border-r border-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                         </motion.div>
                     ))}
                 </div>
-
             </div>
         </section>
     )
 }
+

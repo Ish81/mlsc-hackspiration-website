@@ -21,7 +21,7 @@ export default function Home() {
       <Tracks />
       <Timeline />
       <PastEvents />
-      <Winners />
+      <Winners visible={false} />
       <Team />
       <Discord />
       <FAQ />

@@ -40,7 +40,7 @@ export function CustomCursor() {
                     scale: isHovering ? 1.5 : 1,
                     borderColor: isHovering ? "#FF2D95" : "#00E5FF"
                 }}
-            // transition={{ type: "spring", stiffness: 900, damping: 48 }}
+            // transition={{ type: "spring", stiffness: 1500, damping: 50, mass: 0.1 }}
             >
                 <div className="absolute top-1/2 left-1/2 w-1 h-1 bg-white rounded-full -translate-x-1/2 -translate-y-1/2" />
             </motion.div>
@@ -52,7 +52,7 @@ export function CustomCursor() {
                     scale: isHovering ? 0.5 : 1,
                     opacity: isHovering ? 0 : 1
                 }}
-                transition={{ type: "spring", stiffness: 250, damping: 20 }}
+            // transition={{ type: "spring", stiffness: 1000, damping: 40, mass: 0.1 }}
             />
         </>
     )

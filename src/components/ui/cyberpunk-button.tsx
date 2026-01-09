@@ -34,10 +34,10 @@ export function CyberpunkButton({
 
             {/* Decorative "Wings" - White Accents */}
             {/* Left Wing */}
-            <div className="absolute top-1/2 -left-2 w-1 h-3/4 -translate-y-1/2 bg-white skew-x-[-20deg] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute top-1/2 -left-2 w-1 h-3/4 -translate-y-1/2 bg-white skew-x-[-20deg] opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
             {/* Right Wing */}
-            <div className="absolute top-1/2 -right-2 w-1 h-3/4 -translate-y-1/2 bg-white skew-x-[-20deg] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute top-1/2 -right-2 w-1 h-3/4 -translate-y-1/2 bg-white skew-x-[-20deg] opacity-0 group-hover:opacity-100 transition-opacity duration-100" />
 
             {/* Text Content */}
             <span className={cn(
@@ -47,8 +47,8 @@ export function CyberpunkButton({
                 {children}
             </span>
 
-            {/* Glitch Effect Elements (Optional, for extra flair) */}
-            <div className="absolute inset-0 bg-white/20 skew-x-[-20deg] translate-x-full group-hover:translate-x-[-200%] transition-transform duration-700 ease-in-out opacity-0 group-hover:opacity-50" />
+            {/* Glitch Effect Elements*/}
+            <div className="absolute inset-0 bg-white/20 skew-x-[-20deg] translate-x-full group-hover:translate-x-[-200%] duration-200 ease-in-out opacity-0 group-hover:opacity-50" />
         </button>
     )
 }

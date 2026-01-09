@@ -1,5 +1,13 @@
 # MLSC Hackspiration '26
 
+## Preview
+- [Live Demo](https://mlsc-hackspiration26.vercel.app/)
+
+## Pages
+- Home Page - `/`
+- Contest Page - `/contest`
+- Shortlist Page - `/shortlist`
+
 ## Setup and Installation
 
 - Copy the contents of `env.sample` to the `.env` file and update the variables accordingly

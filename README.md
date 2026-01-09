@@ -2,31 +2,47 @@
 
 ## Setup and Installation
 
-- Create a `.env` file in the root directory
-- Add the following variables to the `.env` file
-
-```bash
-DATABASE_URL="postgresql://<username>:<password>@<host>:<port>/<database>"
-```
-
+- Copy the contents of `env.sample` to the `.env` file and update the variables accordingly
 - Install dependencies and run the development server
 
 ```bash
 pnpm install
-pnpm run dev
 ```
 
-## Database Setup
-
-- Generate Prisma client and push the database schema
+- Database Setup
 
 ```bash
 pnpm prisma generate
 pnpm prisma db push
 ```
 
+- Run the development server
+
+```bash
+pnpm run dev
+```
+
+
 - Seed the database with sample data
 
 ```bash
 npx ts-node prisma/seed.ts
+```
+
+## Docker Setup
+
+You can also run the application using Docker Compose.
+
+1. Build and start the container:
+
+```bash
+docker-compose up --build -d
+```
+
+2. The application will be available at [http://localhost:3000](http://localhost:3000).
+
+3. To stop the container:
+
+```bash
+docker-compose down -v
 ```

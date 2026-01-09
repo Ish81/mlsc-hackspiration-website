@@ -28,6 +28,11 @@ model Team {
   updatedAt        DateTime @updatedAt
 }
 
+model Config {
+  id                  Int     @id @default(1)
+  shortlistAnnounced  Boolean @default(false)
+}
+
 enum Status {
   PENDING
   SHORTLISTED

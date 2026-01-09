@@ -11,6 +11,14 @@ const prisma = new PrismaClient({
 });
 
 async function main() {
+    await prisma.config.upsert({
+        where: { id: 1 },
+        update: {},
+        create: {
+            id: 1,
+            shortlistAnnounced: false,
+        },
+    })
     const teams = [
         { name: "Neural Nexus", labNumber: "Lab 101", presentationSlot: "10:00 AM", status: "SHORTLISTED", leaderName: "John Doe", leaderEmail: "john.doe@example.com" },
         { name: "Code Crusaders", labNumber: "Lab 102", presentationSlot: "10:15 AM", status: "SHORTLISTED", leaderName: "Jane Smith", leaderEmail: "jane.smith@example.com" },

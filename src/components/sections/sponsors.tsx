@@ -28,7 +28,7 @@ export function Sponsors() {
                 </motion.div>
 
                 {/* Sponsors Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center items-center">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 justify-center items-center px-8">
                     {sponsors.map((sponsor, index) => (
                         <SponsorCard key={sponsor.name} sponsor={sponsor} index={index} />
                     ))}
@@ -51,24 +51,48 @@ export function Sponsors() {
         </section>
     )
 }
+import Image from "next/image"
 
 function SponsorCard({ sponsor, index }: { sponsor: any, index: number }) {
+    // Generate a consistent random rotation based on index
+
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.8, rotate: 0 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: index * 0.01 }}
-            className="group relative h-64 md:h-80 w-auto flex bg-gray-900 items-center justify-center rounded-xl overflow-hidden"
+            transition={{ delay: index * 0.05, type: "spring", stiffness: 200 }}
+            className="relative group"
         >
-            <div className="w-full h-full flex items-center justify-center rounded-xl overflow-hidden">
-                <img
-                    src={sponsor.logo}
-                    alt={sponsor.name}
-                    className="max-h-[100%] max-w-[100%] object-contain"
-                />
+            {/* Pin */}
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 w-5 h-5 rounded-full bg-gradient-to-b from-indigo-400 to-violet-600 shadow-[0_2px_4px_rgba(0,0,0,0.5)] border border-red-700">
+                <div className="absolute top-1 left-1 right-1 bottom-1 w-1 h-1 bg-white/50 rounded-full" />
             </div>
-            <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black to-transparent z-10" />
+
+            {/* Paper Card */}
+            <div className="
+                relative 
+                bg-blue-800/15
+                py-4 
+                pt-8 
+                rounded-lg
+                shadow-[0_10px_20px_rgba(0,0,0,0.3)] 
+                transform-gpu
+                transition-shadow duration-300
+                group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]
+            ">
+                {/* Paper Texture/Noise */}
+                <div className="absolute inset-0 opacity-5 pointer-events-none bg-noise mix-blend-multiply" />
+
+                <div className="flex items-center justify-center h-auto w-82 overflow-hidden relative rounded-md">
+                    <img
+                        src={sponsor.logo}
+                        alt={sponsor.name}
+                        className="object-contain mix-blend-multiply"
+                    />
+                </div>
+
+            </div>
         </motion.div>
     )
 }

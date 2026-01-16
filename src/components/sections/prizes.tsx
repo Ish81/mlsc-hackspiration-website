@@ -5,7 +5,7 @@ import { Trophy, Award, Medal, Star } from "lucide-react"
 
 export function Prizes() {
     return (
-        <section id="prizes" className="py-28 bg-black relative overflow-hidden border-t border-white/10">
+        <section id="prizes" className="py-28 relative overflow-hidden border-t border-white/10 bg-black/90 backdrop-blur-xl">
             <div className="container mx-auto px-4 md:px-6 max-w-7xl">
 
                 {/* Header Banner */}
@@ -26,7 +26,7 @@ export function Prizes() {
                     </div>
                 </motion.div>
 
-                {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <PrizeCard
                         rank="1st Prize"
                         amount="₹50,000"
@@ -51,7 +51,7 @@ export function Prizes() {
                         icon={Award}
                         delay={0.2}
                     />
-                </div> */}
+                </div>
             </div>
         </section>
     )

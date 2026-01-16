@@ -161,10 +161,10 @@ function MissionModule({ track, isActive, onToggle, isDimmed }: { track: any, is
                                 </h3>
                             )
                         }
-                        <p className="text-zinc-500 text-sm md:text-base mt-1 me-3">
+                        <p className="text-zinc-500 text-sm md:text-lg mt-1 me-3">
                             {track.description}
                         </p>
-                        <p className="text-zinc-500 text-sm md:text-base mt-1 me-3">
+                        <p className="text-zinc-500 text-sm md:text-xl mt-1 me-3">
                             {track.description2}
                         </p>
                     </div>
@@ -246,7 +246,7 @@ function MissionCard({ problem, index, color, borderColor }: { problem: any, ind
                             {problem.title}
                         </h4>
                     </div>
-                    <p className="text-zinc-400 text-sm leading-relaxed">
+                    <p className="text-zinc-400 text-lg leading-relaxed">
                         {problem.description}
                     </p>
                 </div>

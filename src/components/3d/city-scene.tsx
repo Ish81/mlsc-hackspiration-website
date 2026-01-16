@@ -40,10 +40,26 @@ function CameraRig() {
     return null
 }
 
+function SceneController({ setOpacity }: { setOpacity: (opacity: number) => void }) {
+    useFrame(() => {
+        const scrollY = window.scrollY
+        const viewportHeight = window.innerHeight
+        // Fade out starts after 2 screens (Hero + Spacer + Prizes approx)
+        const startFade = viewportHeight * 1.5
+        const endFade = viewportHeight * 2.5
+        const newOpacity = 1 - Math.max(0, Math.min(1, (scrollY - startFade) / (endFade - startFade)))
+        setOpacity(newOpacity)
+    })
+    return null
+}
+
 export function CityScene() {
+    const [opacity, setOpacity] = useState(1)
+
     return (
-        <div className="absolute inset-0 z-0">
+        <div className="fixed inset-0 z-[-2] bg-black/20" style={{ opacity, pointerEvents: 'none' }}>
             <Canvas camera={{ position: [0, 0, 1] }}>
+                <SceneController setOpacity={setOpacity} />
                 <CameraRig />
                 <Stars />
                 <ambientLight intensity={0.5} />

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Github, Linkedin, Twitter } from "lucide-react"
+import Image from "next/image"
 
 const team = [
     { name: "Ishaan", role: "Organizer", image: "/images/team/Ishaan.png", github: "#", linkedin: "#", twitter: "#" },
@@ -38,10 +39,11 @@ export function Team() {
                             transition={{ delay: index * 0.1 }}
                             className="relative aspect-[3/4] overflow-hidden rounded-xl bg-zinc-900 group backdrop-blur-lg"
                         >
-                            <img
+                            <Image
                                 src={member.image}
                                 alt={member.name}
-                                className="w-full h-full object-cover"
+                                fill
+                                className="object-cover"
                             />
 
                             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />

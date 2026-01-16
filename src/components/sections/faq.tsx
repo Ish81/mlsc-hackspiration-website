@@ -122,23 +122,21 @@ export function FAQ() {
                 [{faqGroup.category}]
               </div>
               {faqGroup.data.map((faq, index) => (
-                <div key={index}>
-                  <AccordionItem
-                    key={`faq-${groupIndex}-${index}`}
-                    value={`faq-${groupIndex}-${index}`}
-                    className="px-5 py-1 border border-zinc-800 overflow-hidden"
-                  >
-                    <AccordionTrigger className="text-left text-white hover:text-neon-cyan hover:no-underline text-lg user-select-all" key={`trigger-${groupIndex}-${index}`}>
-                      <p className="me-2">
-                        {faq.question}
-                      </p>
-                    </AccordionTrigger>
+                <AccordionItem
+                  key={`faq-${groupIndex}-${index}`}
+                  value={`faq-${groupIndex}-${index}`}
+                  className="px-5 py-1 border border-zinc-800 overflow-hidden mb-2"
+                >
+                  <AccordionTrigger className="text-left text-white hover:text-neon-cyan hover:no-underline text-lg" key={`trigger-${groupIndex}-${index}`}>
+                    <p className="me-2">
+                      {faq.question}
+                    </p>
+                  </AccordionTrigger>
 
-                    <AccordionContent className="text-zinc-400 leading-relaxed text-lg user-select-all" key={`content-${groupIndex}-${index}`}>
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                </div>
+                  <AccordionContent className="text-zinc-400 leading-relaxed text-lg user-select-all" key={`content-${groupIndex}-${index}`}>
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
               ))}
             </div>
           ))}

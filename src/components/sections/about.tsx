@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card" // We'll create Card component
 import { Cpu, Globe, Zap } from "lucide-react"
+import Image from "next/image"
 
 export function About() {
     const galleryImages = Array.from({ length: 10 }, (_, i) => `/images/past-events/${i + 1}.jpg`);
@@ -71,11 +72,12 @@ export function About() {
                     >
                         {carouselImages.map((img, index) => (
                             <div key={index} className="flex-shrink-0 w-64 h-48 md:w-80 md:h-60">
-                                <div className="glitch-image-box w-full h-full rounded-lg bg-zinc-900/50">
-                                    <img
+                                <div className="glitch-image-box w-full h-full rounded-lg bg-zinc-900/50 relative">
+                                    <Image
                                         src={img}
                                         alt={`Gallery ${index}`}
-                                        className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300"
+                                        fill
+                                        className="object-cover opacity-80 hover:opacity-100 transition-opacity duration-300"
                                     />
                                 </div>
                             </div>

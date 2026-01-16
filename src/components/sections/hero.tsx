@@ -4,16 +4,16 @@ import { motion } from "framer-motion"
 import { CyberpunkButton } from "@/components/ui/cyberpunk-button"
 import { ArrowRight, Terminal, Code2, Cpu, MapPin } from "lucide-react"
 import { StaggeredText, ScrollScale } from "@/components/ui/scroll-animations"
-import { CityScene } from "@/components/3d/city-scene"
+
 import { Countdown } from "@/components/sections/countdown"
 import { HyperText } from "@/components/ui/hyper-text"
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center bg-black pt-12">
-      {/* 3D Background */}
+    <section className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center pt-12">
+      {/* 3D Background - Moved to global layout */}
       <div className="absolute inset-0 z-0 opacity-60">
-        <CityScene />
+        {/* RobotScene is now global */}
       </div>
       <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-transparent to-black/50" />
       <div className="scanline" />
@@ -46,9 +46,26 @@ export function Hero() {
                 </span>
               </div>
             </div>
-            <div className="text-md md:text-2xl text-zinc-400 font-mono max-w-2xl mx-auto flex justify-center">
-              <StaggeredText text="A thrilling 24-hour offline hackathon merging innovation with game-show excitement" delay={0.01} staggerDelay={0.01} className="justify-center" />
+            <div className="flex justify-center">
+              <div
+                className="
+      px-6 py-3
+      rounded-xl
+      bg-white/10 dark:bg-black/20
+      backdrop-blur-md
+      border border-white/10
+      shadow-lg
+    "
+              >
+                <StaggeredText
+                  text="A thrilling 24-hour offline hackathon merging innovation with game-show excitement"
+                  delay={0.01}
+                  staggerDelay={0.01}
+                  className="text-md md:text-lg font-mono justify-center"
+                />
+              </div>
             </div>
+
           </div>
         </div>
 

@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
 import { Menu, X } from "lucide-react"
 import { useState } from "react"
 import { NotificationBar } from "../ui/notification-bar"
+import Image from "next/image"
 
 const navLinks = [
     { name: "Home", href: "/" },
@@ -25,11 +26,12 @@ export function Navbar() {
         <header className="fixed top-0 left-0 right-0 z-50 bg-black/40 backdrop-blur-xl supports-[backdrop-filter]:bg-blue-900/5">
             <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
                 <Link href="/" className="flex items-center gap-6">
-                    <div className="h-10 w-10 rounded-full overflow-hidden">
-                        <img
+                    <div className="h-10 w-10 rounded-full overflow-hidden relative">
+                        <Image
                             src="/mlsc-logo.jpg"
                             alt="MLSC Logo"
-                            className="h-full w-full object-cover"
+                            fill
+                            className="object-cover"
                         />
                     </div>
                     {/* <div className="h-8 w-8 rounded-full bg-white flex items-center justify-center text-black font-bold text-[10px]">MLSC</div> */}

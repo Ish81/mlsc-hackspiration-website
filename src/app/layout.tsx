@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { CustomCursor } from "@/components/ui/custom-cursor";
+import { AudioPlayer } from "@/components/layout/audio-player";
 
 const outfit = Outfit({
   variable: "--font-sans",
@@ -49,6 +50,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { Preloader } from "@/components/ui/preloader";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -59,6 +62,7 @@ export default function RootLayout({
       <body
         className={`${outfit.variable} ${jetbrainsMono.variable} ${orbitron.variable} antialiased bg-background text-foreground font-sans cursor-none overflow-x-hidden`}
       >
+        <Preloader />
         <CustomCursor />
         <div className="bg-noise" />
         <ThemeProvider
@@ -71,6 +75,7 @@ export default function RootLayout({
           <main className="min-h-screen w-full">
             {children}
           </main>
+          <AudioPlayer />
           <Footer />
         </ThemeProvider>
       </body>

@@ -8,7 +8,7 @@ export function Footer() {
                 <div className="grid gap-8 md:grid-cols-4">
                     <div className="space-y-4">
                         <h3 className="text-lg font-bold text-white">
-                            Hackpiration<span className="text-neon-cyan">'26</span>
+                            Hackspiration <span className="text-neon-cyan">x</span> <span className="text-neon-magenta">Algorand</span>
                         </h3>
                         <p className="text-sm text-zinc-400">
                             Hack. Hustle. Win. <br />

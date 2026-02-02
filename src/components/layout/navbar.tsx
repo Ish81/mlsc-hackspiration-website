@@ -23,10 +23,10 @@ export function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 bg-black/40 backdrop-blur-xl supports-[backdrop-filter]:bg-blue-900/5">
+        <header className="fixed top-0 left-0 right-0 z-50 bg-black/40 backdrop-blur-xl supports-backdrop-filter:bg-blue-900/5">
             <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
-                <Link href="/" className="flex items-center gap-6">
-                    <div className="h-10 w-10 rounded-full overflow-hidden relative">
+                <Link href="/" className="flex items-center gap-3 sm:gap-6 shrink-0">
+                    <div className="h-10 w-10 rounded-full overflow-hidden relative shrink-0">
                         <Image
                             src="/mlsc-logo.jpg"
                             alt="MLSC Logo"
@@ -34,12 +34,16 @@ export function Navbar() {
                             className="object-cover"
                         />
                     </div>
-                    {/* <div className="h-8 w-8 rounded-full bg-white flex items-center justify-center text-black font-bold text-[10px]">MLSC</div> */}
-                    <div className="flex flex-col">
-                        <span className="text-md font-semibold text-white">
+                    <div className="flex flex-col min-w-0 overflow-hidden">
+                        {/* Full text for larger screens (1200px+) */}
+                        <span className="text-md font-semibold text-white hidden xl:block whitespace-nowrap">
                             Microsoft Learner's Student Club
                         </span>
-                        <span className="text-xs text-white">
+                        {/* Shortened text for smaller screens and 100% zoom */}
+                        <span className="text-md font-semibold text-white xl:hidden whitespace-nowrap">
+                            MLSC VIT Pune
+                        </span>
+                        <span className="text-xs text-white hidden xl:block whitespace-nowrap">
                             VIT Pune
                         </span>
                     </div>

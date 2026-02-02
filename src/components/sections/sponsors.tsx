@@ -1,13 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-
-// Combined sponsors list for the grid
-const sponsors = [1, 2, 4, 5, 7, 8].map((i) => ({
-    name: `Sponsor ${i}`,
-    logo: `/images/sponsors/${i}.png`,
-    tier: "Gold"
-}));
+import Image from "next/image"
 
 export function Sponsors() {
     return (
@@ -20,79 +14,63 @@ export function Sponsors() {
                     className="text-center mb-20"
                 >
                     <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-[0.1em] uppercase">
-                        <span className="text-neon-cyan">Sponsors</span>
+                        <span className="text-neon-cyan">Sponsor</span>
                     </h2>
                     <p className="text-zinc-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-                        Fueling the next generation of hackers.
+                        Powering the future of blockchain innovation.
                     </p>
                 </motion.div>
 
-                {/* Sponsors Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 justify-center items-center px-8">
-                    {sponsors.map((sponsor, index) => (
-                        <SponsorCard key={sponsor.name} sponsor={sponsor} index={index} />
-                    ))}
-
-                    {/* Become a Sponsor section, commented as Sponsors are already decided */}
-                    {/* <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: sponsors.length * 0.05 }}
-                        className="group relative h-64 md:h-96 bg-zinc-900 border border-dashed border-white/10 rounded-xl flex flex-col items-center justify-center hover:bg-zinc-800 hover:border-neon-cyan/30 transition-all duration-300 cursor-pointer"
-                    >
-                        <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center mb-3 group-hover:border-neon-cyan/50 group-hover:text-neon-cyan transition-colors text-zinc-500">
-                            <span className="text-2xl">+</span>
+                {/* Algorand - Exclusive Sponsor */}
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    className="flex justify-center"
+                >
+                    <div className="relative group max-w-2xl w-full">
+                        {/* Cyberpunk Glowing Border */}
+                        <div className="absolute -inset-2 bg-gradient-to-r from-neon-cyan via-neon-magenta to-neon-purple rounded-2xl blur-lg opacity-30 group-hover:opacity-60 transition duration-1000 animate-pulse-slow"></div>
+                        
+                        {/* Main Sponsor Card */}
+                        <div className="relative bg-zinc-900/80 border-2 border-neon-cyan/40 rounded-2xl p-12 hover:border-neon-cyan transition-all duration-500 backdrop-blur-xl">
+                            {/* Corner Accents */}
+                            <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-neon-cyan/60" />
+                            <div className="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-neon-cyan/60" />
+                            <div className="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-neon-cyan/60" />
+                            <div className="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-neon-cyan/60" />
+                            
+                            {/* Title Sponsor Badge */}
+                            <div className="text-center mb-8">
+                                <div className="inline-block px-6 py-2 bg-neon-magenta/20 border border-neon-magenta/40 rounded-full">
+                                    <span className="text-neon-magenta font-mono text-sm font-bold uppercase tracking-wider">
+                                        Title Sponsor
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            {/* Algorand Logo/Text */}
+                            <div className="text-center mb-8">
+                                <h3 className="text-6xl md:text-8xl font-black text-transparent bg-gradient-to-r from-neon-cyan to-neon-magenta bg-clip-text mb-4 font-mono tracking-wider">
+                                    ALGORAND
+                                </h3>
+                                <div className="w-24 h-1 bg-gradient-to-r from-neon-cyan to-neon-magenta mx-auto rounded-full"></div>
+                            </div>
+                            
+                            {/* Description */}
+                            <div className="text-center">
+                                <p className="text-zinc-300 text-lg md:text-xl font-mono leading-relaxed">
+                                    Blockchain technology partner powering the future of 
+                                    <span className="text-neon-cyan font-bold"> decentralized innovation</span>
+                                </p>
+                            </div>
+                            
+                            {/* Cyberpunk Grid Pattern */}
+                            <div className="absolute inset-0 bg-[linear-gradient(rgba(0,229,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,229,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none rounded-2xl"></div>
                         </div>
-                        <span className="text-zinc-500 text-sm font-mono group-hover:text-neon-cyan transition-colors">BECOME A SPONSOR</span>
-                    </motion.div> */}
-                </div>
+                    </div>
+                </motion.div>
             </div>
         </section>
-    )
-}
-import Image from "next/image"
-
-function SponsorCard({ sponsor, index }: { sponsor: any, index: number }) {
-    // Generate a consistent random rotation based on index
-
-    return (
-        <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotate: 0 }}
-            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.05, type: "spring", stiffness: 200 }}
-            className="relative group"
-        >
-            {/* Pin */}
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 w-5 h-5 rounded-full bg-gradient-to-b from-indigo-400 to-violet-600 shadow-[0_2px_4px_rgba(0,0,0,0.5)] border border-red-700">
-                <div className="absolute top-1 left-1 right-1 bottom-1 w-1 h-1 bg-white/50 rounded-full" />
-            </div>
-
-            {/* Paper Card */}
-            <div className="
-                relative 
-                bg-blue-800/15
-                py-4 
-                pt-8 
-                rounded-lg
-                shadow-[0_10px_20px_rgba(0,0,0,0.3)] 
-                transform-gpu
-                transition-shadow duration-300
-                group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]
-            ">
-                {/* Paper Texture/Noise */}
-                <div className="absolute inset-0 opacity-5 pointer-events-none bg-noise mix-blend-multiply" />
-
-                <div className="flex items-center justify-center h-auto w-82 overflow-hidden relative rounded-md">
-                    <img
-                        src={sponsor.logo}
-                        alt={sponsor.name}
-                        className="object-contain mix-blend-multiply"
-                    />
-                </div>
-
-            </div>
-        </motion.div>
     )
 }

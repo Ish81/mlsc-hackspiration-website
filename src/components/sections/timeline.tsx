@@ -5,72 +5,129 @@ import { useRef } from "react"
 import { Calendar, Clock, Terminal, ChevronRight, CheckCircle2, Circle, Radio, Activity, ArrowDownRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-// Hardcoded Active Node ID
-const CURRENT_EVENT_ID = "idea_submission_open"
+// Dynamic Active Node ID based on current date
+function getCurrentEventId() {
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const currentMonth = now.getMonth() + 1; // getMonth() returns 0-11
+    const currentDay = now.getDate();
+    
+    // Convert current date to comparable format (YYYYMMDD)
+    const currentDate = currentYear * 10000 + currentMonth * 100 + currentDay;
+    
+    // Event dates in YYYYMMDD format
+    const regBegin = 2026 * 10000 + 2 * 100 + 3; // Feb 3, 2026
+    const regDeadline = 2026 * 10000 + 2 * 100 + 10; // Feb 10, 2026
+    const ideaDeadline = 2026 * 10000 + 2 * 100 + 12; // Feb 12, 2026
+    const shortlisting = 2026 * 10000 + 2 * 100 + 13; // Feb 13, 2026
+    const kickoff = 2026 * 10000 + 2 * 100 + 14; // Feb 14, 2026
+    const offlineHackathon = 2026 * 10000 + 2 * 100 + 15; // Feb 15, 2026
+    
+    if (currentDate >= offlineHackathon) {
+        return "prize_distribution";
+    } else if (currentDate >= kickoff) {
+        return "offline_hackathon";
+    } else if (currentDate >= shortlisting) {
+        return "hackathon_kickoff";
+    } else if (currentDate >= ideaDeadline) {
+        return "shortlisting_announcement";
+    } else if (currentDate >= regDeadline) {
+        return "idea_submission_deadline";
+    } else if (currentDate >= regBegin) {
+        return "registration_deadline";
+    } else {
+        return "registration_submissions_begin"; // Default to first event if before all dates
+    }
+}
 
 const timelineEvents = [
     {
-        day: "Pre-Event",
-        date: "Jan 2026",
+        day: "Phase 1",
+        date: "3 Feb 2026",
         events: [
             {
-                id: "registrations_open",
-                time: "10 Jan 2026",
-                title: "Registrations Open till 20 Jan 2026",
-                description: "Participant registrations go live",
+                id: "registration_submissions_begin",
+                time: "3 Feb 2026",
+                title: "Registration & Submissions Begin",
+                description: "Team registrations and project idea submissions open for both hackathon tracks",
                 type: "system"
             },
         ]
     },
     {
-        day: "Round 1",
-        date: "Jan 2026",
+        day: "Phase 2",
+        date: "10 Feb 2026",
         events: [
             {
-                id: "idea_submission_open",
-                time: "20 Jan 2026",
+                id: "registration_deadline",
+                time: "10 Feb 2026",
+                title: "Registration Deadline",
+                description: "Last date to register for the hackathon. No new team registrations accepted after this date",
+                type: "system"
+            },
+        ]
+    },
+    {
+        day: "Phase 3",
+        date: "12 Feb 2026",
+        events: [
+            {
+                id: "idea_submission_deadline",
+                time: "12 Feb 2026",
                 title: "Idea Submission Deadline",
-                description: "Submit your ideas by 20 Jan 2026",
+                description: "Registered teams must submit their final project ideas aligned with one of the two tracks",
                 type: "system"
             },
+        ]
+    },
+    {
+        day: "Phase 4",
+        date: "13 Feb 2026",
+        events: [
             {
-                id: "shortlist_announcement",
-                time: "TBA",
-                title: "Shortlisted Teams declared",
-                description: "Qualified teams announced on the website",
+                id: "shortlisting_announcement",
+                time: "13 Feb 2026",
+                title: "Shortlisting of Top 30 Teams",
+                description: "Top 30 teams will be shortlisted based on idea evaluation and announced for the hackathon",
                 type: "alert"
             }
         ]
     },
     {
-        day: "Day 1 (30th Jan)",
-        date: "Jan 30, 2026",
+        day: "Phase 5",
+        date: "14 Feb 2026",
         events: [
             {
-                id: "hacking_begins",
-                time: "11:00 AM",
-                title: "Build Phase Begins",
-                description: "Build your projects for 24 hours in offline mode",
+                id: "hackathon_kickoff",
+                time: "14 Feb 2026",
+                title: "Hackathon Kick-off & Mentoring (Online)",
+                description: "The hackathon officially begins with an opening session followed by online mentoring",
                 type: "alert"
             }
         ]
     },
     {
-        day: "Day 2 (31st Jan)",
-        date: "Jan 31, 2026",
+        day: "Phase 6",
+        date: "15 Feb 2026",
         events: [
             {
-                id: "submission_deadline",
-                time: "11:00 AM",
-                title: "Build Phase Ends",
-                description: "Submit your projects by 11:00 AM",
+                id: "offline_hackathon",
+                time: "15 Feb 2026",
+                title: "Offline Hackathon & Final Evaluation (VIT, Pune)",
+                description: "Shortlisted teams will build, demo, and present their projects offline before the jury panel",
                 type: "alert"
-            },
+            }
+        ]
+    },
+    {
+        day: "Phase 7",
+        date: "15 Feb 2026",
+        events: [
             {
-                id: "judging_round",
-                time: "12:00 PM",
-                title: "Judging Round and Winner Announcement",
-                description: "Teams present their solutions and winners are announced",
+                id: "prize_distribution",
+                time: "15 Feb 2026",
+                title: "Prize Distribution & Closing Ceremony",
+                description: "Winners and special mention teams will be announced, followed by the closing ceremony",
                 type: "event"
             }
         ]
@@ -81,6 +138,7 @@ const allEvents = timelineEvents.flatMap(day => day.events.map(e => ({ ...e, day
 
 export function Timeline() {
     const containerRef = useRef<HTMLDivElement>(null)
+    const CURRENT_EVENT_ID = getCurrentEventId()
     const currentIndex = allEvents.findIndex(e => e.id === CURRENT_EVENT_ID)
 
     return (

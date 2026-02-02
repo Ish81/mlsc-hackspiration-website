@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 
-const targetDate = new Date("2026-01-30T00:00:00");
+const targetDate = new Date("2026-02-14T00:00:00");
 const targetDateLabel = "Registration closing in";
 
 export function Countdown() {

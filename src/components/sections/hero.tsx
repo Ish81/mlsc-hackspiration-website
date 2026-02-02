@@ -31,10 +31,17 @@ export function Hero() {
           >
             <h1 className="text-4xl sm:text-6xl md:text-9xl font-black text-white mb-6 tracking-tighter relative">
               <span className="absolute -inset-1 blur-2xl bg-neon-cyan/20 rounded-full pointer-events-none" />
-              <HyperText text="HACKSPIRATION'26" className="relative z-10" />
+              <HyperText text="HACKSPIRATION" className="relative z-10" />
+              <span className="text-neon-cyan relative z-10"> x </span>
+              <span className="text-neon-magenta relative z-10">ALGORAND</span>
             </h1>
             {/* Chips */}
             <div className="flex flex-row gap-3 items-center justify-center mt-5 mb-9">
+              <div className="flex items-center gap-3 px-4 py-2 bg-zinc-900 rounded-md backdrop-blur-md group">
+                <span className="text-neon-purple font-[family-name:var(--font-orbitron)] font-bold tracking-wider text-xs">
+                  14–15 FEBRUARY 2026
+                </span>
+              </div>
               <div className="flex items-center gap-3 px-4 py-2 bg-zinc-900 rounded-md backdrop-blur-md group">
                 <span className="text-neon-magenta font-[family-name:var(--font-orbitron)] font-bold tracking-wider text-xs">
                   24 HOUR HACKATHON

@@ -115,14 +115,18 @@ function OrbitingNodes() {
 function ConnectionBeams() {
   const beamsRef = useRef<THREE.Group>(null)
   
-  const beams = useMemo(() => {
+  const beamsData = useMemo(() => {
     const count = 8
     const radius = 6
     return Array.from({ length: count }, (_, i) => {
       const angle = (i / count) * Math.PI * 2
+      const start = new THREE.Vector3(0, 0, 0)
+      const end = new THREE.Vector3(Math.cos(angle) * radius, 0, Math.sin(angle) * radius)
+      const curve = new THREE.LineCurve3(start, end)
+      const geometry = new THREE.TubeGeometry(curve, 20, 0.03, 8, false)
+      
       return {
-        start: [0, 0, 0] as [number, number, number],
-        end: [Math.cos(angle) * radius, 0, Math.sin(angle) * radius] as [number, number, number],
+        geometry,
         color: ['#00E5FF', '#FF2D95', '#7C7CFF'][i % 3]
       }
     })
@@ -136,25 +140,17 @@ function ConnectionBeams() {
 
   return (
     <group ref={beamsRef}>
-      {beams.map((beam, i) => {
-        const curve = new THREE.LineCurve3(
-          new THREE.Vector3(...beam.start),
-          new THREE.Vector3(...beam.end)
-        )
-        const tubeGeometry = new THREE.TubeGeometry(curve, 20, 0.03, 8, false)
-        
-        return (
-          <mesh key={i} geometry={tubeGeometry}>
-            <meshBasicMaterial
-              color={beam.color}
-              transparent
-              opacity={0.5}
-              emissive={beam.color}
-              emissiveIntensity={1}
-            />
-          </mesh>
-        )
-      })}
+      {beamsData.map((beam, i) => (
+        <mesh key={i} geometry={beam.geometry}>
+          <meshStandardMaterial
+            color={beam.color}
+            transparent
+            opacity={0.5}
+            emissive={beam.color}
+            emissiveIntensity={1}
+          />
+        </mesh>
+      ))}
     </group>
   )
 }

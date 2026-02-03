@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { DollarSign, Bot, ExternalLink, Copy, Check, ChevronRight, Megaphone } from "lucide-react"
+import { Brain, Shield, Gamepad2, ExternalLink, Copy, Check, ChevronRight, Terminal, Megaphone, Lock, Wallet } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "../ui/button"
 
@@ -10,29 +10,39 @@ const tracks = [
     {
         id: "track-01",
         title: "Future of Finance",
-        description: "Build decentralized financial solutions for campus communities using blockchain technology.",
-        icon: DollarSign,
-        color: "text-neon-cyan",
-        borderColor: "border-neon-cyan",
-        bgGradient: "from-neon-cyan/10",
+        description: "Reimagine campus payments and funding with decentralized, transparent, and user-friendly solutions.",
+        icon: Wallet,
+        color: "text-green-400",
+        borderColor: "border-green-400",
+        bgGradient: "from-green-400/10",
         problems: [
-            { id: "PS-101", title: "Campus Payment System", description: "Design simple, user-friendly decentralized applications on Algorand that enable students to send and receive payments using blockchain wallets. Solutions should focus on real campus use cases, low transaction complexity, and clear user experience rather than advanced financial mechanisms." },
-            { id: "PS-102", title: "Expense Splitting Platform", description: "Create a decentralized application for students to split shared expenses transparently. Use smart contracts to manage group payments, track contributions, and settle debts without centralized intermediaries. Focus on transparency and ease of use for campus communities." },
-            { id: "PS-103", title: "Event Ticketing & Fundraising", description: "Build a blockchain-based solution for event ticketing and fundraising that eliminates unnecessary fees and provides complete transparency. Use tokens and smart contracts to manage event access, ticket transfers, and fundraising campaigns for campus activities." }
+            {
+                id: "The Challenge",
+                title: "Future of Finance",
+                description: [
+                    "Students and campus communities rely heavily on cashless payments, shared expenses, event ticketing, and fundraising platforms that are controlled by centralized intermediaries. These systems often lack transparency, charge unnecessary fees, and provide limited control to users.",
+                    "The challenge is to design simple, user-friendly decentralized applications on Algorand that enable students to send and receive payments, split expenses, save funds, raise money, and manage event access using blockchain wallets, tokens, and smart contracts. Solutions should focus on real campus use cases, low transaction complexity, and clear user experience rather than advanced financial mechanisms."
+                ]
+            }
         ]
     },
     {
         id: "track-02",
         title: "AI and Automation in Blockchain",
-        description: "Build blockchain applications that improve trust, verification, and coordination for campus activities.",
-        icon: Bot,
-        color: "text-green-400",
-        borderColor: "border-green-400",
-        bgGradient: "from-green-400/10",
+        description: "Enhance campus trust and coordination using verifiable, privacy-preserving blockchain automation.",
+        icon: Brain,
+        color: "text-neon-cyan",
+        borderColor: "border-neon-cyan",
+        bgGradient: "from-neon-cyan/10",
         problems: [
-            { id: "PS-201", title: "Campus Voting System", description: "Build a beginner-friendly blockchain application on Algorand for campus voting that ensures fair participation and verifiable records. Solutions should demonstrate how blockchain can enable transparent elections, prevent tampering, and maintain voter privacy without relying on centralized control." },
-            { id: "PS-202", title: "Attendance & Certification", description: "Create a blockchain-based system for tracking attendance and issuing verifiable certificates for campus activities. Use smart contracts to automate verification processes and ensure data integrity without manual intervention or centralized authorities." },
-            { id: "PS-203", title: "Privacy-Preserving Feedback", description: "Design a blockchain application for collecting campus feedback that preserves privacy while ensuring authenticity. Build systems that allow anonymous yet verifiable submissions, preventing data tampering while maintaining trust in the feedback process." }
+            {
+                id: "The Challenge",
+                title: "AI and Automation in Blockchain",
+                description: [
+                    "Campus systems such as voting, attendance tracking, feedback collection, certification, and group coordination often suffer from lack of trust, manual verification, data tampering, and privacy concerns. Centralized systems require users to trust authorities while offering little transparency or auditability.",
+                    "The challenge is to build beginner-friendly blockchain applications on Algorand that improve trust, verification, and coordination for campus activities. Solutions should demonstrate how blockchain can enable fair participation, verifiable records, privacy-preserving systems, and simple automation without relying on centralized control."
+                ]
+            }
         ]
     },
     {
@@ -116,11 +126,16 @@ function MissionModule({ track, isActive, onToggle, isDimmed }: { track: any, is
                         onToggle();
                     }
                 }}
-                className="relative z-10 w-full p-5 md:p-6 flex items-center justify-between text-left group"
+                className={cn(
+                    "relative z-10 w-full p-5 md:p-6 flex text-left group",
+                    track.id === "contest"
+                        ? "flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-0"
+                        : "items-center justify-between"
+                )}
             >
                 <div className="flex items-center gap-6">
                     <div className={cn(
-                        "md:h-16 md:w-16 h-10 w-12 rounded-lg flex items-center justify-center border transition-all duration-300",
+                        "md:h-16 md:w-16 h-12 w-12 rounded-lg flex items-center justify-center border transition-all duration-300 shrink-0",
                         isActive ? `bg-black ${track.color}` : "bg-zinc-800 border-white/10 text-zinc-500 group-hover:text-white group-hover:border-white/30",
                         track.id === "contest" ? "border border-yellow-400/50 bg-yellow-400/5 text-yellow-400" : ""
                     )}>
@@ -147,7 +162,7 @@ function MissionModule({ track, isActive, onToggle, isDimmed }: { track: any, is
                                 </h3>
                             )
                         }
-                        <p className="text-zinc-500 text-sm md:text-lg mt-1 me-3">
+                        <p className="text-zinc-500 text-sm md:text-lg mt-1 me-3 hidden md:block">
                             {track.description}
                         </p>
                         <p className="text-zinc-500 text-sm md:text-xl mt-1 me-3">
@@ -167,10 +182,9 @@ function MissionModule({ track, isActive, onToggle, isDimmed }: { track: any, is
                         </a>
                     </div>
                 )}
-
                 {track.problems.length > 0 && (
                     <div className={cn(
-                        "h-10 w-10 rounded-full border flex items-center justify-center transition-all duration-300",
+                        "ms-3 h-10 w-10 shrink-0 rounded-full border flex items-center justify-center transition-all duration-300",
                         isActive ? `border-${track.color.split('-')[1]} bg-${track.color.split('-')[1]}/10 text-white rotate-90` : "border-white/10 text-zinc-500 group-hover:border-white/30"
                     )}>
                         <ChevronRight className="h-5 w-5" />
@@ -210,7 +224,10 @@ function MissionCard({ problem, index, color, borderColor }: { problem: any, ind
 
     const handleCopy = (e: React.MouseEvent) => {
         e.stopPropagation()
-        navigator.clipboard.writeText(`${problem.title}\n\n${problem.description}`)
+        const descriptionText = Array.isArray(problem.description)
+            ? problem.description.join('\n\n')
+            : problem.description
+        navigator.clipboard.writeText(`${problem.title}\n\n${descriptionText}`)
         setCopied(true)
         setTimeout(() => setCopied(false), 2000)
     }
@@ -232,9 +249,17 @@ function MissionCard({ problem, index, color, borderColor }: { problem: any, ind
                             {problem.title}
                         </h4>
                     </div>
-                    <p className="text-zinc-400 text-lg leading-relaxed">
-                        {problem.description}
-                    </p>
+                    <div className="text-zinc-400 text-lg leading-relaxed">
+                        {Array.isArray(problem.description) ? (
+                            problem.description.map((paragraph: string, i: number) => (
+                                <p key={i} className="mb-4 last:mb-0">
+                                    {paragraph}
+                                </p>
+                            ))
+                        ) : (
+                            <p>{problem.description}</p>
+                        )}
+                    </div>
                 </div>
 
                 <div className="flex items-center gap-3 mt-4 md:mt-0">

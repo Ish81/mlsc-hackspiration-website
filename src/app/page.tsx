@@ -1,5 +1,5 @@
 import { Hero } from "@/components/sections/hero";
-import { RobotScene } from "@/components/3d/robot-scene";
+import { Web3Background } from "@/components/3d/web3-background";
 import { CityScene } from "@/components/3d/city-scene";
 import dynamic from "next/dynamic";
 
@@ -21,11 +21,7 @@ export default function Home() {
       <div className="flex flex-col min-h-screen w-full overflow-hidden relative">
         <CityScene />
         <Hero />
-        <RobotScene />
-        {/* Robot is global fixed, this is the spacer for its 'own page' */}
-        <div className="min-h-[500px] w-full flex items-center justify-center pointer-events-none bg-black/20">
-          {/* Empty space for the robot to inhabit */}
-        </div>
+        <Web3Background />
         <Prizes />
         <About />
         <Sponsors />

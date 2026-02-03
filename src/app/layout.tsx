@@ -1,26 +1,10 @@
 import type { Metadata } from "next";
-import { Outfit, JetBrains_Mono, Orbitron } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { CustomCursor } from "@/components/ui/custom-cursor";
 import { AudioPlayer } from "@/components/layout/audio-player";
-
-const outfit = Outfit({
-  variable: "--font-sans",
-  subsets: ["latin"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-});
-
-const orbitron = Orbitron({
-  variable: "--font-orbitron",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Hackpiration'26 | MLSC VIT Pune",
@@ -59,8 +43,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Load Google Fonts via CDN to avoid build-time fetch issues */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link 
+          href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=JetBrains+Mono:wght@100..800&family=Orbitron:wght@400..900&display=swap" 
+          rel="stylesheet"
+        />
+      </head>
       <body
-        className={`${outfit.variable} ${jetbrainsMono.variable} ${orbitron.variable} antialiased bg-background text-foreground font-sans cursor-none overflow-x-hidden`}
+        className="antialiased bg-background text-foreground font-sans cursor-none overflow-x-hidden"
+        style={{
+          fontFamily: "Outfit, system-ui, arial, sans-serif",
+        }}
       >
         <Preloader />
         <CustomCursor />

@@ -24,12 +24,12 @@ const orbitron = Orbitron({
 
 export const metadata: Metadata = {
   title: "Hackpiration'26 | MLSC VIT Pune",
-  description: "Join Hackpiration'26, the biggest 24-hour hackathon at VIT Pune organized by Microsoft Learner's Student Club. Hack, Hustle, and Win!",
+  description: "Join Hackpiration'26, a hybrid hackathon at VIT Pune organized by Microsoft Learner's Student Club. Online round on 14th February, offline finale on 15th February. Hack, Hustle, and Win!",
   keywords: ["Hackathon", "VIT Pune", "MLSC", "Coding", "Competition", "Hackpiration", "2026"],
   authors: [{ name: "MLSC VIT Pune" }],
   openGraph: {
     title: "Hackpiration'26 | MLSC VIT Pune",
-    description: "Join Hackpiration'26, the biggest 24-hour hackathon at VIT Pune. 1000+ participants, 24 hours of innovation.",
+    description: "Join Hackpiration'26, a hybrid hackathon at VIT Pune. 1000+ participants, two-phase event with online round on 14th Feb and offline finale on 15th Feb.",
     siteName: "Hackpiration'26",
     images: [
       {
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Hackpiration'26 | MLSC VIT Pune",
-    description: "Join Hackpiration'26, the biggest 24-hour hackathon at VIT Pune.",
+    description: "Join Hackpiration'26, a hybrid hackathon at VIT Pune. Online round on 14th Feb, offline finale on 15th Feb.",
     images: ["/mlsc-logo.jpg"],
   },
 };

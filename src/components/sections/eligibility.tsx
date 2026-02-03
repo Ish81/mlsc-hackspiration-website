@@ -40,7 +40,7 @@ export function Eligibility() {
         >
           {eligibilityCriteria.map((criterion, index) => (
             <motion.div
-              key={index}
+              key={criterion}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}

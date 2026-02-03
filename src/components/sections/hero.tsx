@@ -78,13 +78,19 @@ export function Hero() {
 
         <div className="w-full flex-row mb-6 items-center justify-center">
           <div className="flex flex-col md:gap-8 gap-5 sm:flex-row items-center justify-center">
-            <CyberpunkButton
-              variant="primary"
-              className="md:text-lg text-xs md:py-5 md:px-12 sm:py-4 sm:px-8"
+            <a
+              href="https://unstop.com/o/mjrhY8O?lb=OSIZMkR&utm_medium=Share&utm_source=mlscvitpune&utm_campaign=Online_coding_challenge"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              REGISTER NOW
-              <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
-            </CyberpunkButton>
+              <CyberpunkButton
+                variant="primary"
+                className="md:text-lg text-xs md:py-5 md:px-12 sm:py-4 sm:px-8"
+              >
+                REGISTER NOW
+                <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </CyberpunkButton>
+            </a>
 
             <CyberpunkButton
               variant="secondary"

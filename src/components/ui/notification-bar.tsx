@@ -23,9 +23,14 @@ export function NotificationBar() {
                                 Registrations Closing Soon
                             </span>
                             <span className="text-white/50 font-mono text-xs">•</span>
-                            <span className="text-neon-purple font-mono text-xs md:text-xs uppercase tracking-widest hover:underline cursor-pointer">
+                            <a
+                                href="https://unstop.com/o/mjrhY8O?lb=OSIZMkR&utm_medium=Share&utm_source=mlscvitpune&utm_campaign=Online_coding_challenge"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-neon-purple font-mono text-xs md:text-xs uppercase tracking-widest hover:underline cursor-pointer"
+                            >
                                 Register Now via Unstop
-                            </span>
+                            </a>
                         </div>
                     ))}
                 </motion.div>

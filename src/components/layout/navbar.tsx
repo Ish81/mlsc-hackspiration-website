@@ -115,7 +115,7 @@ export function Navbar() {
                             </Link>
                         ))}
                         <a
-                            href="https://unstop.com"
+                            href="https://unstop.com/o/mjrhY8O?lb=OSIZMkR&utm_medium=Share&utm_source=mlscvitpune&utm_campaign=Online_coding_challenge"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex h-10 items-center justify-center rounded-md bg-neon-purple px-4 text-sm font-medium text-white"

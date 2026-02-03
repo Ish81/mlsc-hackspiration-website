@@ -44,7 +44,7 @@ export function Hero() {
               </div>
               <div className="flex items-center gap-3 px-4 py-2 bg-zinc-900 rounded-md backdrop-blur-md group">
                 <span className="text-neon-magenta font-[family-name:var(--font-orbitron)] font-bold tracking-wider text-xs">
-                  24 HOUR HACKATHON
+                  HYBRID HACKATHON
                 </span>
               </div>
               <div className="flex items-center gap-3 px-4 py-2 bg-zinc-900 rounded-md backdrop-blur-md group">
@@ -65,7 +65,7 @@ export function Hero() {
     "
               >
                 <StaggeredText
-                  text="A thrilling 24-hour offline hackathon merging innovation with game-show excitement"
+                  text="A hybrid hackathon featuring an online round on 14th February and an offline finale on 15th February"
                   delay={0.01}
                   staggerDelay={0.01}
                   className="text-md md:text-lg font-mono justify-center"

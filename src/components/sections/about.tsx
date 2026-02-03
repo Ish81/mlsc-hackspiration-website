@@ -26,7 +26,7 @@ export function About() {
                             MLSC VIT Pune is a dynamic tech community operating under the aegis of Microsoft, guided by the on-campus Microsoft Learn Student Ambassador. We are dedicated to empowering students by offering a platform to develop both technical and non-technical skills.
                         </p>
                         <p className="text-gray-400 text-lg leading-relaxed mt-6 font-semibold">
-                            Hackspiration 26 is our annual 24-hour hackathon where we invite students from all over the world to showcase their skills and creativity.
+                            Hackspiration 26 is a two-phase hybrid hackathon, with an online round on 14th February followed by an offline finale on 15th February.
                         </p>
                     </motion.div>
 
@@ -47,7 +47,7 @@ export function About() {
                         </div>
                         <div className="p-6 rounded-xl bg-zinc-900/50 border border-white/10 hover:border-neon-magenta/50 transition-colors group">
                             <h3 className="text-5xl font-black text-white mb-2 font-[family-name:var(--font-orbitron)] group-hover:text-neon-magenta transition-colors">
-                                24hrs
+                                2 Days
                             </h3>
                             <p className="text-zinc-400 font-medium uppercase tracking-wider text-sm">
                                 Of Innovation

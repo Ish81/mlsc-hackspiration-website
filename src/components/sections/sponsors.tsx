@@ -51,7 +51,7 @@ export function Sponsors() {
                             
                             {/* Algorand Logo/Text */}
                             <div className="text-center mb-8">
-                                <h3 className="text-6xl md:text-8xl font-black text-transparent bg-gradient-to-r from-neon-cyan to-neon-magenta bg-clip-text mb-4 font-mono tracking-wider">
+                                <h3 className="text-4xl sm:text-6xl md:text-8xl font-black text-transparent bg-gradient-to-r from-neon-cyan to-neon-magenta bg-clip-text mb-4 font-mono tracking-normal break-words m-4">
                                     ALGORAND
                                 </h3>
                                 <div className="w-24 h-1 bg-gradient-to-r from-neon-cyan to-neon-magenta mx-auto rounded-full"></div>

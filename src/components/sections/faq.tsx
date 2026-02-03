@@ -17,9 +17,9 @@ const faqs2 = [
     category: "GENERAL",
     data: [
       {
-        question: "Is Hackpiration’26 an offline event?",
+        question: "Is Hackpiration'26 an online or offline event?",
         answer:
-          "Yes. Hackpiration’26 is a fully offline, in-person hackathon conducted at the VIT Pune campus. All shortlisted teams must be present on-site.",
+          "Hackpiration'26 is a hybrid hackathon. The event starts with an online kick-off and mentoring session on 14th February, followed by an offline finale at VIT Pune campus on 15th February where shortlisted teams must be present on-site.",
       },
       {
         question: "Who is eligible to participate?",

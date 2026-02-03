@@ -20,35 +20,39 @@ export function Prizes() {
                     </h2>
                     <div className="relative inline-block group mt-8">
                         <div className="absolute -inset-4 bg-neon-purple/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        <div className="text-3xl md:text-[5rem] font-black text-white tracking-tighter font-mono animate-glitch drop-shadow-[0_0_30px_rgba(124,58,237,0.6)]" data-text="₹1,00,000">
-                            ₹1,00,000
+                        <div className="text-3xl md:text-[5rem] font-black text-white tracking-tighter font-mono animate-glitch drop-shadow-[0_0_30px_rgba(124,58,237,0.6)]" data-text="₹60,000">
+                            ₹60,000
                         </div>
                     </div>
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <PrizeCard
-                        rank="1st Prize"
-                        amount="₹50,000"
+                        rank="Winner"
+                        amount="₹20,000"
                         color="text-neon-cyan"
                         borderColor="border-neon-cyan"
                         icon={Trophy}
                         delay={0}
                     />
                     <PrizeCard
-                        rank="2nd Prize"
-                        amount="₹30,000"
+                        rank="Runner-Up"
+                        amount="₹10,000"
                         color="text-neon-purple"
                         borderColor="border-neon-purple"
                         icon={Medal}
                         delay={0.1}
                     />
                     <PrizeCard
-                        rank="3rd Prize"
-                        amount="₹20,000"
+                        rank="Special Mention Awards"
+                        amount={
+                            <span className="text-lg md:text-xl">
+                                AI Grants for outstanding projects in <span className="text-white font-bold">each track</span>
+                            </span>
+                        }
                         color="text-yellow-400"
                         borderColor="border-yellow-400"
-                        icon={Award}
+                        icon={Star}
                         delay={0.2}
                     />
                 </div>

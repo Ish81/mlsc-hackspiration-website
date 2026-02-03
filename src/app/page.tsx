@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 
 const Countdown = dynamic(() => import("@/components/sections/countdown").then(mod => mod.Countdown));
 const About = dynamic(() => import("@/components/sections/about").then(mod => mod.About));
+const Eligibility = dynamic(() => import("@/components/sections/eligibility").then(mod => mod.Eligibility));
 const Tracks = dynamic(() => import("@/components/sections/tracks").then(mod => mod.Tracks));
 const Prizes = dynamic(() => import("@/components/sections/prizes").then(mod => mod.Prizes));
 const Timeline = dynamic(() => import("@/components/sections/timeline").then(mod => mod.Timeline));
@@ -28,6 +29,7 @@ export default function Home() {
         </div>
         <Prizes />
         <About />
+        <Eligibility />
         <Sponsors />
         <Tracks />
         <Timeline />

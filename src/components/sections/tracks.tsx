@@ -2,51 +2,47 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Brain, Shield, Gamepad2, ExternalLink, Copy, Check, ChevronRight, Terminal, Megaphone, Lock } from "lucide-react"
+import { Brain, Shield, Gamepad2, ExternalLink, Copy, Check, ChevronRight, Terminal, Megaphone, Lock, Wallet } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "../ui/button"
 
 const tracks = [
     {
         id: "track-01",
-        title: "AI & ML",
-        description: "Build intelligent systems that learn and adapt.",
+        title: "Future of Finance",
+        description: "Reimagine campus payments and funding with decentralized, transparent, and user-friendly solutions.",
+        icon: Wallet,
+        color: "text-green-400",
+        borderColor: "border-green-400",
+        bgGradient: "from-green-400/10",
+        problems: [
+            {
+                id: "The Challenge",
+                title: "Future of Finance",
+                description: [
+                    "Students and campus communities rely heavily on cashless payments, shared expenses, event ticketing, and fundraising platforms that are controlled by centralized intermediaries. These systems often lack transparency, charge unnecessary fees, and provide limited control to users.",
+                    "The challenge is to design simple, user-friendly decentralized applications on Algorand that enable students to send and receive payments, split expenses, save funds, raise money, and manage event access using blockchain wallets, tokens, and smart contracts. Solutions should focus on real campus use cases, low transaction complexity, and clear user experience rather than advanced financial mechanisms."
+                ]
+            }
+        ]
+    },
+    {
+        id: "track-02",
+        title: "AI and Automation in Blockchain",
+        description: "Enhance campus trust and coordination using verifiable, privacy-preserving blockchain automation.",
         icon: Brain,
         color: "text-neon-cyan",
         borderColor: "border-neon-cyan",
         bgGradient: "from-neon-cyan/10",
         problems: [
-            { id: "PS-101", title: "AI for Accessibility", description: "Build tools to help people with disabilities navigate the digital world. Focus on real-time image recognition, voice-to-text for hearing impaired, or navigation aids for the visually impaired." },
-            { id: "PS-102", title: "Predictive Healthcare", description: "Early disease detection using ML algorithms on patient data. Create models that can analyze symptoms or medical imagery to predict potential health issues before they become critical." },
-            { id: "PS-103", title: "Smart City Solutions", description: "Optimizing traffic flow and energy usage using real-time data. Develop systems that analyze urban data to improve public transport efficiency or reduce energy consumption in smart buildings." }
-        ]
-    },
-    {
-        id: "track-02",
-        title: "Cybersecurity",
-        description: "Protect systems from digital threats and vulnerabilities.",
-        icon: Lock,
-        color: "text-green-400",
-        borderColor: "border-green-400",
-        bgGradient: "from-green-400/10",
-        problems: [
-            { id: "PS-301", title: "Blockchain Identity", description: "Decentralized identity management using blockchain. Create a self-sovereign identity system that gives users full control over their personal data without central authorities." },
-            { id: "PS-302", title: "Phishing Detection", description: "Browser extension to detect and block phishing attempts. Use natural language processing and URL analysis to identify malicious websites in real-time." },
-            { id: "PS-303", title: "Secure File Sharing", description: "End-to-end encrypted platform for sensitive data. Build a secure transfer protocol that ensures data privacy and integrity during transit and storage." }
-        ]
-    },
-    {
-        id: "track-03",
-        title: "Game Dev / AR/VR",
-        description: "Immersive experiences and interactive worlds.",
-        icon: Gamepad2,
-        color: "text-pink-500",
-        borderColor: "border-pink-500",
-        bgGradient: "from-pink-500/10",
-        problems: [
-            { id: "PS-601", title: "Educational VR", description: "Immersive history or science lessons in VR. Transport students to historical events or microscopic worlds to enhance learning engagement and retention." },
-            { id: "PS-602", title: "AR Navigation", description: "Indoor navigation system for large venues like airports. Overlay directional arrows and points of interest on the real world to help users find their way easily." },
-            { id: "PS-603", title: "Social Impact Game", description: "Indie game that raises awareness about social issues. Use storytelling and gameplay mechanics to educate players about topics like climate change or inequality." }
+            {
+                id: "The Challenge",
+                title: "AI and Automation in Blockchain",
+                description: [
+                    "Campus systems such as voting, attendance tracking, feedback collection, certification, and group coordination often suffer from lack of trust, manual verification, data tampering, and privacy concerns. Centralized systems require users to trust authorities while offering little transparency or auditability.",
+                    "The challenge is to build beginner-friendly blockchain applications on Algorand that improve trust, verification, and coordination for campus activities. Solutions should demonstrate how blockchain can enable fair participation, verifiable records, privacy-preserving systems, and simple automation without relying on centralized control."
+                ]
+            }
         ]
     },
     {
@@ -130,11 +126,16 @@ function MissionModule({ track, isActive, onToggle, isDimmed }: { track: any, is
                         onToggle();
                     }
                 }}
-                className="relative z-10 w-full p-5 md:p-6 flex items-center justify-between text-left group"
+                className={cn(
+                    "relative z-10 w-full p-5 md:p-6 flex text-left group",
+                    track.id === "contest"
+                        ? "flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-0"
+                        : "items-center justify-between"
+                )}
             >
                 <div className="flex items-center gap-6">
                     <div className={cn(
-                        "md:h-16 md:w-16 h-10 w-12 rounded-lg flex items-center justify-center border transition-all duration-300",
+                        "md:h-16 md:w-16 h-12 w-12 rounded-lg flex items-center justify-center border transition-all duration-300 shrink-0",
                         isActive ? `bg-black ${track.color}` : "bg-zinc-800 border-white/10 text-zinc-500 group-hover:text-white group-hover:border-white/30",
                         track.id === "contest" ? "border border-yellow-400/50 bg-yellow-400/5 text-yellow-400" : ""
                     )}>
@@ -161,7 +162,7 @@ function MissionModule({ track, isActive, onToggle, isDimmed }: { track: any, is
                                 </h3>
                             )
                         }
-                        <p className="text-zinc-500 text-sm md:text-lg mt-1 me-3">
+                        <p className="text-zinc-500 text-sm md:text-lg mt-1 me-3 hidden md:block">
                             {track.description}
                         </p>
                         <p className="text-zinc-500 text-sm md:text-xl mt-1 me-3">
@@ -181,10 +182,9 @@ function MissionModule({ track, isActive, onToggle, isDimmed }: { track: any, is
                         </a>
                     </div>
                 )}
-
                 {track.problems.length > 0 && (
                     <div className={cn(
-                        "h-10 w-10 rounded-full border flex items-center justify-center transition-all duration-300",
+                        "ms-3 h-10 w-10 shrink-0 rounded-full border flex items-center justify-center transition-all duration-300",
                         isActive ? `border-${track.color.split('-')[1]} bg-${track.color.split('-')[1]}/10 text-white rotate-90` : "border-white/10 text-zinc-500 group-hover:border-white/30"
                     )}>
                         <ChevronRight className="h-5 w-5" />
@@ -224,7 +224,10 @@ function MissionCard({ problem, index, color, borderColor }: { problem: any, ind
 
     const handleCopy = (e: React.MouseEvent) => {
         e.stopPropagation()
-        navigator.clipboard.writeText(`${problem.title}\n\n${problem.description}`)
+        const descriptionText = Array.isArray(problem.description)
+            ? problem.description.join('\n\n')
+            : problem.description
+        navigator.clipboard.writeText(`${problem.title}\n\n${descriptionText}`)
         setCopied(true)
         setTimeout(() => setCopied(false), 2000)
     }
@@ -246,9 +249,17 @@ function MissionCard({ problem, index, color, borderColor }: { problem: any, ind
                             {problem.title}
                         </h4>
                     </div>
-                    <p className="text-zinc-400 text-lg leading-relaxed">
-                        {problem.description}
-                    </p>
+                    <div className="text-zinc-400 text-lg leading-relaxed">
+                        {Array.isArray(problem.description) ? (
+                            problem.description.map((paragraph: string, i: number) => (
+                                <p key={i} className="mb-4 last:mb-0">
+                                    {paragraph}
+                                </p>
+                            ))
+                        ) : (
+                            <p>{problem.description}</p>
+                        )}
+                    </div>
                 </div>
 
                 <div className="flex items-center gap-3 mt-4 md:mt-0">

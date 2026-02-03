@@ -7,6 +7,7 @@ const Countdown = dynamic(() => import("@/components/sections/countdown").then(m
 const About = dynamic(() => import("@/components/sections/about").then(mod => mod.About));
 const Tracks = dynamic(() => import("@/components/sections/tracks").then(mod => mod.Tracks));
 const Prizes = dynamic(() => import("@/components/sections/prizes").then(mod => mod.Prizes));
+const Eligibility = dynamic(() => import("@/components/sections/eligibility").then(mod => mod.Eligibility));
 const Timeline = dynamic(() => import("@/components/sections/timeline").then(mod => mod.Timeline));
 const PastEvents = dynamic(() => import("@/components/sections/past-events").then(mod => mod.PastEvents));
 const Team = dynamic(() => import("@/components/sections/team").then(mod => mod.Team));
@@ -30,6 +31,7 @@ export default function Home() {
         <About />
         <Sponsors />
         <Tracks />
+        <Eligibility />
         <Timeline />
         <PastEvents />
         <Winners visible={false} />

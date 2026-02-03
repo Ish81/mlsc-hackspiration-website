@@ -2,51 +2,37 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Brain, Shield, Gamepad2, ExternalLink, Copy, Check, ChevronRight, Terminal, Megaphone, Lock } from "lucide-react"
+import { DollarSign, Bot, ExternalLink, Copy, Check, ChevronRight, Megaphone } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "../ui/button"
 
 const tracks = [
     {
         id: "track-01",
-        title: "AI & ML",
-        description: "Build intelligent systems that learn and adapt.",
-        icon: Brain,
+        title: "Future of Finance",
+        description: "Build decentralized financial solutions for campus communities using blockchain technology.",
+        icon: DollarSign,
         color: "text-neon-cyan",
         borderColor: "border-neon-cyan",
         bgGradient: "from-neon-cyan/10",
         problems: [
-            { id: "PS-101", title: "AI for Accessibility", description: "Build tools to help people with disabilities navigate the digital world. Focus on real-time image recognition, voice-to-text for hearing impaired, or navigation aids for the visually impaired." },
-            { id: "PS-102", title: "Predictive Healthcare", description: "Early disease detection using ML algorithms on patient data. Create models that can analyze symptoms or medical imagery to predict potential health issues before they become critical." },
-            { id: "PS-103", title: "Smart City Solutions", description: "Optimizing traffic flow and energy usage using real-time data. Develop systems that analyze urban data to improve public transport efficiency or reduce energy consumption in smart buildings." }
+            { id: "PS-101", title: "Campus Payment System", description: "Design simple, user-friendly decentralized applications on Algorand that enable students to send and receive payments using blockchain wallets. Solutions should focus on real campus use cases, low transaction complexity, and clear user experience rather than advanced financial mechanisms." },
+            { id: "PS-102", title: "Expense Splitting Platform", description: "Create a decentralized application for students to split shared expenses transparently. Use smart contracts to manage group payments, track contributions, and settle debts without centralized intermediaries. Focus on transparency and ease of use for campus communities." },
+            { id: "PS-103", title: "Event Ticketing & Fundraising", description: "Build a blockchain-based solution for event ticketing and fundraising that eliminates unnecessary fees and provides complete transparency. Use tokens and smart contracts to manage event access, ticket transfers, and fundraising campaigns for campus activities." }
         ]
     },
     {
         id: "track-02",
-        title: "Cybersecurity",
-        description: "Protect systems from digital threats and vulnerabilities.",
-        icon: Lock,
+        title: "AI and Automation in Blockchain",
+        description: "Build blockchain applications that improve trust, verification, and coordination for campus activities.",
+        icon: Bot,
         color: "text-green-400",
         borderColor: "border-green-400",
         bgGradient: "from-green-400/10",
         problems: [
-            { id: "PS-301", title: "Blockchain Identity", description: "Decentralized identity management using blockchain. Create a self-sovereign identity system that gives users full control over their personal data without central authorities." },
-            { id: "PS-302", title: "Phishing Detection", description: "Browser extension to detect and block phishing attempts. Use natural language processing and URL analysis to identify malicious websites in real-time." },
-            { id: "PS-303", title: "Secure File Sharing", description: "End-to-end encrypted platform for sensitive data. Build a secure transfer protocol that ensures data privacy and integrity during transit and storage." }
-        ]
-    },
-    {
-        id: "track-03",
-        title: "Game Dev / AR/VR",
-        description: "Immersive experiences and interactive worlds.",
-        icon: Gamepad2,
-        color: "text-pink-500",
-        borderColor: "border-pink-500",
-        bgGradient: "from-pink-500/10",
-        problems: [
-            { id: "PS-601", title: "Educational VR", description: "Immersive history or science lessons in VR. Transport students to historical events or microscopic worlds to enhance learning engagement and retention." },
-            { id: "PS-602", title: "AR Navigation", description: "Indoor navigation system for large venues like airports. Overlay directional arrows and points of interest on the real world to help users find their way easily." },
-            { id: "PS-603", title: "Social Impact Game", description: "Indie game that raises awareness about social issues. Use storytelling and gameplay mechanics to educate players about topics like climate change or inequality." }
+            { id: "PS-201", title: "Campus Voting System", description: "Build a beginner-friendly blockchain application on Algorand for campus voting that ensures fair participation and verifiable records. Solutions should demonstrate how blockchain can enable transparent elections, prevent tampering, and maintain voter privacy without relying on centralized control." },
+            { id: "PS-202", title: "Attendance & Certification", description: "Create a blockchain-based system for tracking attendance and issuing verifiable certificates for campus activities. Use smart contracts to automate verification processes and ensure data integrity without manual intervention or centralized authorities." },
+            { id: "PS-203", title: "Privacy-Preserving Feedback", description: "Design a blockchain application for collecting campus feedback that preserves privacy while ensuring authenticity. Build systems that allow anonymous yet verifiable submissions, preventing data tampering while maintaining trust in the feedback process." }
         ]
     },
     {

@@ -1,161 +1,200 @@
 "use client"
 
-import { useRef, useEffect, useMemo } from "react"
+import { useRef, useMemo, Suspense } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
 import * as THREE from "three"
 
-// Web3 Network Node Component
-function NetworkNode({ position, color }: { position: [number, number, number], color: string }) {
-  const meshRef = useRef<THREE.Mesh>(null)
+// Large Central Blockchain Node - The hero element like the robot was
+function CentralBlockchainNode() {
+  const groupRef = useRef<THREE.Group>(null)
+  const innerRef = useRef<THREE.Mesh>(null)
   
   useFrame((state) => {
-    if (meshRef.current && meshRef.current.position && meshRef.current.scale) {
-      // Gentle floating animation
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime + position[0]) * 0.2
-      // Gentle pulsing
-      const scale = 1 + Math.sin(state.clock.elapsedTime * 2 + position[0]) * 0.1
-      meshRef.current.scale.setScalar(scale)
+    if (groupRef.current) {
+      // Slow rotation
+      groupRef.current.rotation.y = state.clock.elapsedTime * 0.3
+      
+      // Gentle floating
+      groupRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.3
+    }
+    
+    if (innerRef.current) {
+      // Counter-rotate inner cube
+      innerRef.current.rotation.x = -state.clock.elapsedTime * 0.5
+      innerRef.current.rotation.z = state.clock.elapsedTime * 0.3
     }
   })
 
   return (
-    <mesh ref={meshRef} position={position}>
-      <sphereGeometry args={[0.15, 16, 16]} />
-      <meshStandardMaterial
-        color={color}
-        emissive={color}
-        emissiveIntensity={0.5}
-        toneMapped={false}
-      />
-      {/* Outer glow ring */}
+    <group ref={groupRef} position={[0, 0, 0]}>
+      {/* Large outer wireframe cube - blockchain structure */}
       <mesh>
-        <sphereGeometry args={[0.25, 16, 16]} />
+        <boxGeometry args={[4, 4, 4]} />
         <meshBasicMaterial
-          color={color}
+          color="#00E5FF"
+          wireframe
           transparent
-          opacity={0.1}
-          side={THREE.BackSide}
+          opacity={0.6}
         />
       </mesh>
-    </mesh>
+      
+      {/* Inner rotating cube */}
+      <mesh ref={innerRef}>
+        <boxGeometry args={[2.5, 2.5, 2.5]} />
+        <meshBasicMaterial
+          color="#FF2D95"
+          wireframe
+          transparent
+          opacity={0.7}
+        />
+      </mesh>
+      
+      {/* Core glowing sphere */}
+      <mesh>
+        <sphereGeometry args={[1, 32, 32]} />
+        <meshStandardMaterial
+          color="#7C7CFF"
+          emissive="#7C7CFF"
+          emissiveIntensity={3}
+          toneMapped={false}
+        />
+      </mesh>
+      
+      {/* Bright point lights at corners */}
+      <pointLight position={[2, 2, 2]} color="#00E5FF" intensity={4} />
+      <pointLight position={[-2, -2, -2]} color="#FF2D95" intensity={4} />
+      <pointLight position={[2, -2, 2]} color="#7C7CFF" intensity={4} />
+      <pointLight position={[-2, 2, -2]} color="#00E5FF" intensity={4} />
+    </group>
   )
 }
 
-// Connection line between nodes
-function ConnectionLine({ start, end, color }: { 
-  start: [number, number, number], 
-  end: [number, number, number],
-  color: string 
-}) {
-  const lineRef = useRef<THREE.Line>(null)
+// Orbiting network nodes
+function OrbitingNodes() {
+  const nodesRef = useRef<THREE.Group>(null)
   
-  const points = useMemo(() => {
-    return [
-      new THREE.Vector3(...start),
-      new THREE.Vector3(...end)
-    ]
-  }, [start, end])
-
-  const geometry = useMemo(() => {
-    return new THREE.BufferGeometry().setFromPoints(points)
-  }, [points])
-
+  const nodes = useMemo(() => {
+    const count = 8
+    const radius = 6
+    return Array.from({ length: count }, (_, i) => ({
+      angle: (i / count) * Math.PI * 2,
+      radius,
+      color: ['#00E5FF', '#FF2D95', '#7C7CFF'][i % 3],
+      offset: i * 0.5
+    }))
+  }, [])
+  
   useFrame((state) => {
-    if (lineRef.current && lineRef.current.material) {
-      // Animate opacity for data flow effect
-      const material = lineRef.current.material as THREE.LineBasicMaterial
-      material.opacity = 0.2 + Math.sin(state.clock.elapsedTime * 2) * 0.15
+    if (nodesRef.current) {
+      nodesRef.current.rotation.y = state.clock.elapsedTime * 0.2
     }
   })
 
   return (
-    <line ref={lineRef} geometry={geometry}>
-      <lineBasicMaterial
-        color={color}
-        transparent
-        opacity={0.3}
-      />
-    </line>
+    <group ref={nodesRef}>
+      {nodes.map((node, i) => {
+        const x = Math.cos(node.angle) * node.radius
+        const z = Math.sin(node.angle) * node.radius
+        return (
+          <mesh key={i} position={[x, 0, z]}>
+            <sphereGeometry args={[0.3, 16, 16]} />
+            <meshStandardMaterial
+              color={node.color}
+              emissive={node.color}
+              emissiveIntensity={2}
+              toneMapped={false}
+            />
+          </mesh>
+        )
+      })}
+    </group>
   )
 }
 
-// Blockchain Grid Effect
+// Connection beams between center and orbiting nodes
+function ConnectionBeams() {
+  const beamsRef = useRef<THREE.Group>(null)
+  
+  const beams = useMemo(() => {
+    const count = 8
+    const radius = 6
+    return Array.from({ length: count }, (_, i) => {
+      const angle = (i / count) * Math.PI * 2
+      return {
+        start: [0, 0, 0] as [number, number, number],
+        end: [Math.cos(angle) * radius, 0, Math.sin(angle) * radius] as [number, number, number],
+        color: ['#00E5FF', '#FF2D95', '#7C7CFF'][i % 3]
+      }
+    })
+  }, [])
+  
+  useFrame((state) => {
+    if (beamsRef.current) {
+      beamsRef.current.rotation.y = state.clock.elapsedTime * 0.2
+    }
+  })
+
+  return (
+    <group ref={beamsRef}>
+      {beams.map((beam, i) => {
+        const curve = new THREE.LineCurve3(
+          new THREE.Vector3(...beam.start),
+          new THREE.Vector3(...beam.end)
+        )
+        const tubeGeometry = new THREE.TubeGeometry(curve, 20, 0.03, 8, false)
+        
+        return (
+          <mesh key={i} geometry={tubeGeometry}>
+            <meshBasicMaterial
+              color={beam.color}
+              transparent
+              opacity={0.5}
+              emissive={beam.color}
+              emissiveIntensity={1}
+            />
+          </mesh>
+        )
+      })}
+    </group>
+  )
+}
+
+// Animated grid floor
 function BlockchainGrid() {
   const gridRef = useRef<THREE.GridHelper>(null)
   
   useFrame((state) => {
-    if (gridRef.current && gridRef.current.position) {
-      gridRef.current.position.y = -5 + Math.sin(state.clock.elapsedTime * 0.5) * 0.5
+    if (gridRef.current) {
+      gridRef.current.position.y = -4 + Math.sin(state.clock.elapsedTime * 0.5) * 0.3
     }
   })
 
   return (
     <gridHelper 
       ref={gridRef}
-      args={[50, 50, '#00E5FF', '#7C7CFF']} 
-      position={[0, -5, 0]}
+      args={[30, 30, '#00E5FF', '#FF2D95']} 
+      position={[0, -4, 0]}
     />
   )
 }
 
-// Floating Hexagons (blockchain-inspired)
-function FloatingHexagon({ position, scale, rotationSpeed }: {
-  position: [number, number, number],
-  scale: number,
-  rotationSpeed: number
-}) {
-  const meshRef = useRef<THREE.Mesh>(null)
-  
-  const geometry = useMemo(() => {
-    const shape = new THREE.Shape()
-    for (let i = 0; i < 6; i++) {
-      const angle = (Math.PI / 3) * i
-      const x = Math.cos(angle)
-      const y = Math.sin(angle)
-      if (i === 0) shape.moveTo(x, y)
-      else shape.lineTo(x, y)
-    }
-    shape.closePath()
-    return new THREE.ShapeGeometry(shape)
-  }, [])
-
-  useFrame((state) => {
-    if (meshRef.current && meshRef.current.rotation && meshRef.current.position && position && position.length >= 3) {
-      meshRef.current.rotation.z += rotationSpeed
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.5 + position[0]) * 0.5
-    }
-  })
-
-  return (
-    <mesh ref={meshRef} position={position} scale={scale} geometry={geometry}>
-      <meshBasicMaterial
-        color="#7C7CFF"
-        transparent
-        opacity={0.1}
-        side={THREE.DoubleSide}
-        wireframe
-      />
-    </mesh>
-  )
-}
-
-// Particles for depth
+// Floating particles
 function ParticleField() {
   const particlesRef = useRef<THREE.Points>(null)
   
   const [positions, colors] = useMemo(() => {
-    const positions = new Float32Array(1000 * 3)
-    const colors = new Float32Array(1000 * 3)
+    const positions = new Float32Array(1500 * 3)
+    const colors = new Float32Array(1500 * 3)
     const colorPalette = [
       new THREE.Color('#00E5FF'),
       new THREE.Color('#FF2D95'),
       new THREE.Color('#7C7CFF')
     ]
     
-    for (let i = 0; i < 1000; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 50
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 50
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 50
+    for (let i = 0; i < 1500; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 30
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 30
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 30
       
       const color = colorPalette[Math.floor(Math.random() * colorPalette.length)]
       colors[i * 3] = color.r
@@ -167,7 +206,7 @@ function ParticleField() {
   }, [])
 
   useFrame((state) => {
-    if (particlesRef.current && particlesRef.current.rotation) {
+    if (particlesRef.current) {
       particlesRef.current.rotation.y = state.clock.elapsedTime * 0.05
     }
   })
@@ -189,87 +228,13 @@ function ParticleField() {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.05}
+        size={0.08}
         vertexColors
         transparent
-        opacity={0.6}
+        opacity={0.7}
         sizeAttenuation
       />
     </points>
-  )
-}
-
-// Main Network Scene
-function Web3Network() {
-  const groupRef = useRef<THREE.Group>(null)
-  
-  // Define network nodes with positions
-  const nodes = useMemo(() => [
-    { pos: [-4, 2, -2] as [number, number, number], color: '#00E5FF' },
-    { pos: [4, 3, -3] as [number, number, number], color: '#FF2D95' },
-    { pos: [0, -2, -4] as [number, number, number], color: '#7C7CFF' },
-    { pos: [-3, -3, -2] as [number, number, number], color: '#00E5FF' },
-    { pos: [3, 0, -5] as [number, number, number], color: '#FF2D95' },
-    { pos: [0, 4, -3] as [number, number, number], color: '#7C7CFF' },
-    { pos: [-5, 0, -4] as [number, number, number], color: '#00E5FF' },
-    { pos: [5, -2, -2] as [number, number, number], color: '#FF2D95' },
-  ], [])
-
-  // Define connections between nodes
-  const connections = useMemo(() => [
-    { start: nodes[0].pos, end: nodes[1].pos, color: '#00E5FF' },
-    { start: nodes[1].pos, end: nodes[2].pos, color: '#FF2D95' },
-    { start: nodes[2].pos, end: nodes[3].pos, color: '#7C7CFF' },
-    { start: nodes[3].pos, end: nodes[0].pos, color: '#00E5FF' },
-    { start: nodes[4].pos, end: nodes[5].pos, color: '#FF2D95' },
-    { start: nodes[5].pos, end: nodes[6].pos, color: '#7C7CFF' },
-    { start: nodes[6].pos, end: nodes[7].pos, color: '#00E5FF' },
-    { start: nodes[0].pos, end: nodes[5].pos, color: '#7C7CFF' },
-    { start: nodes[1].pos, end: nodes[4].pos, color: '#FF2D95' },
-  ], [nodes])
-
-  const hexagons = useMemo(() => [
-    { pos: [-6, 2, -8] as [number, number, number], scale: 0.5, speed: 0.002 },
-    { pos: [6, -1, -7] as [number, number, number], scale: 0.7, speed: -0.003 },
-    { pos: [0, 3, -10] as [number, number, number], scale: 1, speed: 0.001 },
-    { pos: [-4, -4, -6] as [number, number, number], scale: 0.6, speed: -0.002 },
-    { pos: [4, 4, -9] as [number, number, number], scale: 0.8, speed: 0.0025 },
-  ], [])
-
-  useFrame((state) => {
-    if (groupRef.current && groupRef.current.position && groupRef.current.rotation) {
-      // Subtle parallax effect based on scroll
-      const scrollY = typeof window !== 'undefined' ? window.scrollY : 0
-      groupRef.current.position.y = scrollY * -0.001
-      
-      // Gentle rotation
-      groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.1) * 0.1
-    }
-  })
-
-  return (
-    <group ref={groupRef}>
-      {/* Blockchain Grid */}
-      <BlockchainGrid />
-      
-      {/* Network Connections */}
-      {connections.map((conn, i) => (
-        <ConnectionLine key={`conn-${i}`} {...conn} />
-      ))}
-      
-      {/* Network Nodes */}
-      {nodes.map((node, i) => (
-        <NetworkNode key={`node-${i}`} position={node.pos} color={node.color} />
-      ))}
-      
-      {/* Floating Hexagons */}
-      {hexagons.map((hex, i) => (
-        <FloatingHexagon key={`hex-${i}`} {...hex} />
-      ))}
-      
-      {/* Particle Field */}
-      <ParticleField />
-    </group>
   )
 }
 
@@ -278,14 +243,29 @@ export function Web3Background() {
     <div className="fixed inset-0 z-[-1] pointer-events-none">
       <Canvas
         camera={{
-          position: [0, 0, 10],
-          fov: 60,
+          position: [0, 2, 14],
+          fov: 75,
         }}
       >
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1} color="#00E5FF" />
-        <pointLight position={[-10, -10, -10]} intensity={1} color="#FF2D95" />
-        <Web3Network />
+        <Suspense fallback={null}>
+          {/* Very bright ambient lighting */}
+          <ambientLight intensity={2} />
+          
+          {/* Strong colored lights */}
+          <pointLight position={[10, 10, 10]} intensity={5} color="#00E5FF" />
+          <pointLight position={[-10, 10, 10]} intensity={5} color="#FF2D95" />
+          <pointLight position={[0, -10, 10]} intensity={5} color="#7C7CFF" />
+          <directionalLight position={[0, 5, 5]} intensity={2} color="#ffffff" />
+          
+          {/* Fog for depth */}
+          <fog attach="fog" args={['#000000', 10, 30]} />
+          
+          <CentralBlockchainNode />
+          <OrbitingNodes />
+          <ConnectionBeams />
+          <BlockchainGrid />
+          <ParticleField />
+        </Suspense>
       </Canvas>
     </div>
   )

@@ -54,9 +54,6 @@ export default function RootLayout({
       </head>
       <body
         className="antialiased bg-background text-foreground font-sans cursor-none overflow-x-hidden"
-        style={{
-          fontFamily: "Outfit, system-ui, arial, sans-serif",
-        }}
       >
         <Preloader />
         <CustomCursor />

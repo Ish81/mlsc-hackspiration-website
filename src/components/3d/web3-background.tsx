@@ -74,7 +74,6 @@ function ConnectionLine({ start, end, color }: {
         color={color}
         transparent
         opacity={0.3}
-        linewidth={2}
       />
     </line>
   )
@@ -121,16 +120,11 @@ function FloatingHexagon({ position, scale, rotationSpeed }: {
   }, [])
 
   useFrame((state) => {
-    if (meshRef.current && meshRef.current.rotation && meshRef.current.position && position && position.length >= 2) {
+    if (meshRef.current && meshRef.current.rotation && meshRef.current.position && position && position.length >= 3) {
       meshRef.current.rotation.z += rotationSpeed
       meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.5 + position[0]) * 0.5
     }
   })
-
-  // Safety check for position
-  if (!position || position.length < 3) {
-    return null
-  }
 
   return (
     <mesh ref={meshRef} position={position} scale={scale} geometry={geometry}>

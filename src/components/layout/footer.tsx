@@ -36,16 +36,46 @@ export function Footer() {
                     </div>
 
                     <div>
-                        <h4 className="mb-4 text-sm font-semibold text-white">Connect</h4>
-                        <div className="flex gap-4 text-zinc-400">
-                            <a href="#" className="hover:text-neon-cyan"><Twitter className="h-5 w-5" /></a>
-                            <a href="#" className="hover:text-neon-cyan"><Linkedin className="h-5 w-5" /></a>
-                            <a href="#" className="hover:text-neon-cyan"><Instagram className="h-5 w-5" /></a>
-                            <a href="mailto:mlsc@vit.edu" className="hover:text-neon-cyan"><Mail className="h-5 w-5" /></a>
-                        </div>
-                        <p className="mt-4 text-sm text-zinc-400">
-                            Powered by <span className="font-bold text-white">MLSC VIT Pune</span>
-                        </p>
+                    <h4 className="mb-4 text-sm font-semibold text-white">Connect</h4>
+                    <div className="flex gap-4 text-zinc-400">
+                        <a
+                        href="https://x.com/mlsc_vit_p"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-neon-cyan"
+                        >
+                        <Twitter className="h-5 w-5" />
+                        </a>
+
+                        <a
+                        href="https://www.linkedin.com/company/mlscvitpune/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-neon-cyan"
+                        >
+                        <Linkedin className="h-5 w-5" />
+                        </a>
+
+                        <a
+                        href="https://www.instagram.com/mlscvitpune"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-neon-cyan"
+                        >
+                        <Instagram className="h-5 w-5" />
+                        </a>
+
+                        <a
+                        href="mailto:mlsc@vit.edu"
+                        className="hover:text-neon-cyan"
+                        >
+                        <Mail className="h-5 w-5" />
+                        </a>
+                    </div>
+
+                    <p className="mt-4 text-sm text-zinc-400">
+                        Powered by <span className="font-bold text-white">MLSC VIT Pune</span>
+                    </p>
                     </div>
                 </div>
 

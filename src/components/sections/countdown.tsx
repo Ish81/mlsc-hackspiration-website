@@ -3,8 +3,33 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 
-const targetDate = new Date("2026-02-14T00:00:00");
+const targetDate = Date.UTC(2026, 1, 11, 18, 30, 0) // Feb 11, 18:30 UTC = Feb 12, 00:00 IST
 const targetDateLabel = "Registration closing in";
+
+const MS_PER_SECOND = 1000
+const MS_PER_MINUTE = 60 * MS_PER_SECOND
+const MS_PER_HOUR = 60 * MS_PER_MINUTE
+const MS_PER_DAY = 24 * MS_PER_HOUR
+
+function calculateTimeRemaining() {
+      const nowUtc = Date.now()
+    const diff = targetDate - nowUtc
+
+    if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+    
+    const totalDays = Math.floor(diff / MS_PER_DAY) - 1 // subtract 1 to exclude the current day, as Unstop does
+    const hours = Math.floor((diff % MS_PER_DAY) / MS_PER_HOUR)
+    const minutes = Math.floor((diff % MS_PER_HOUR) / MS_PER_MINUTE)
+    const seconds = Math.floor((diff % MS_PER_MINUTE) / MS_PER_SECOND)
+
+    return {
+        days: Math.max(0, totalDays),
+        hours,
+        minutes,
+        seconds,
+    }
+}
+
 
 export function Countdown() {
     const [timeLeft, setTimeLeft] = useState({
@@ -15,21 +40,12 @@ export function Countdown() {
     })
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            const now = new Date()
-            const difference = targetDate.getTime() - now.getTime()
+        const tick = () => setTimeLeft(calculateTimeRemaining())
 
-            if (difference > 0) {
-                setTimeLeft({
-                    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-                    minutes: Math.floor((difference / 1000 / 60) % 60),
-                    seconds: Math.floor((difference / 1000) % 60)
-                })
-            }
-        }, 1000)
+        tick()
+        const intervalId = setInterval(tick, MS_PER_SECOND)
 
-        return () => clearInterval(interval)
+        return () => clearInterval(intervalId)
     }, [])
 
     return (

@@ -7,6 +7,7 @@ import { StaggeredText, ScrollScale } from "@/components/ui/scroll-animations"
 
 import { Countdown } from "@/components/sections/countdown"
 import { HyperText } from "@/components/ui/hyper-text"
+import { SOCIAL_LINKS } from "@/lib/constants"
 
 export function Hero() {
   return (
@@ -93,13 +94,19 @@ export function Hero() {
               </CyberpunkButton>
             </a>
 
-            <CyberpunkButton
-              variant="secondary"
-              className="md:text-lg text-xs md:py-5 md:px-12 sm:py-4 sm:px-8"
+            <a
+              href={SOCIAL_LINKS.DISCORD}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <Terminal className="h-5 w-5 mr-2" />
-              JOIN DISCORD
-            </CyberpunkButton>
+              <CyberpunkButton
+                variant="secondary"
+                className="md:text-lg text-xs md:py-5 md:px-12 sm:py-4 sm:px-8"
+              >
+                <Terminal className="h-5 w-5 mr-2" />
+                JOIN DISCORD
+              </CyberpunkButton>
+            </a>
           </div>
 
           <div className="w-full mb-12">

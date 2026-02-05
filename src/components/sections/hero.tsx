@@ -90,6 +90,13 @@ export function Hero() {
                 className="md:text-lg text-xs md:py-5 md:px-12 sm:py-4 sm:px-8"
               >
                 REGISTER NOW
+                <div className="flex items-center gap-2 px-2 py-1.5 rounded-md border-[#0073e6]">
+                  <img
+                    src="https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/svg/unstop-logo.svg"
+                    alt="Unstop"
+                    className="h-5 w-auto"
+                  />
+                </div>
                 <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </CyberpunkButton>
             </a>

@@ -28,15 +28,15 @@ export default function Home() {
           {/* Empty space for the robot to inhabit */}
         </div>
         <Prizes />
-        <About />
         <Sponsors />
         <Tracks />
-        <Eligibility />
         <Timeline />
+        <Eligibility />
+        <Community />
+        <About />
         <PastEvents />
         <Winners visible={false} />
         <Team />
-        <Community />
         <FAQ />
       </div>
     </div>

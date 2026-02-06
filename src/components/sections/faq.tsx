@@ -17,14 +17,14 @@ const faqs2 = [
     category: "GENERAL",
     data: [
       {
-        question: "Is Hackpiration'26 an online or offline event?",
+        question: "Is Hackspiration'26 an online or offline event?",
         answer:
-          "Hackpiration'26 is a hybrid hackathon. The event starts with an online kick-off and mentoring session on 14th February, followed by an offline finale at VIT Pune campus on 15th February where shortlisted teams must be present on-site.",
+          "Hackspiration'26 is a hybrid hackathon. The event starts with an online kick-off and mentoring session on 14th February, followed by an offline finale at VIT Pune campus on 15th February where shortlisted teams must be present on-site.",
       },
       {
         question: "Who is eligible to participate?",
         answer:
-          "Hackpiration’26 is open to undergraduate and postgraduate students from any recognized college or university. Participants must be students at the time of the event.",
+          "Hackspiration’26 is open to undergraduate and postgraduate students from any recognized college or university. Participants must be students at the time of the event.",
       },
     ],
   },

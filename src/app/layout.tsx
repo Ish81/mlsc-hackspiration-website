@@ -23,20 +23,20 @@ const orbitron = Orbitron({
 });
 
 export const metadata: Metadata = {
-  title: "Hackpiration'26 | MLSC VIT Pune",
-  description: "Join Hackpiration'26, a hybrid hackathon at VIT Pune organized by Microsoft Learner's Student Club. Online round on 14th February, offline finale on 15th February. Hack, Hustle, and Win!",
-  keywords: ["Hackathon", "VIT Pune", "MLSC", "Coding", "Competition", "Hackpiration", "2026"],
+  title: "Hackspiration'26 | MLSC VIT Pune",
+  description: "Join Hackspiration'26, a hybrid hackathon at VIT Pune organized by Microsoft Learner's Student Club. Online round on 14th February, offline finale on 15th February. Hack, Hustle, and Win!",
+  keywords: ["Hackathon", "VIT Pune", "MLSC", "Coding", "Competition", "Hackspiration", "2026"],
   authors: [{ name: "MLSC VIT Pune" }],
   openGraph: {
-    title: "Hackpiration'26 | MLSC VIT Pune",
-    description: "Join Hackpiration'26, a hybrid hackathon at VIT Pune. 1000+ participants, two-phase event with online round on 14th Feb and offline finale on 15th Feb.",
-    siteName: "Hackpiration'26",
+    title: "Hackspiration'26 | MLSC VIT Pune",
+    description: "Join Hackspiration'26, a hybrid hackathon at VIT Pune. 1000+ participants, two-phase event with online round on 14th Feb and offline finale on 15th Feb.",
+    siteName: "Hackspiration'26",
     images: [
       {
         url: "/mlsc-logo.jpg",
         width: 1200,
         height: 630,
-        alt: "Hackpiration'26 Banner",
+        alt: "Hackspiration'26 Banner",
       },
     ],
     locale: "en_US",
@@ -44,8 +44,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hackpiration'26 | MLSC VIT Pune",
-    description: "Join Hackpiration'26, a hybrid hackathon at VIT Pune. Online round on 14th Feb, offline finale on 15th Feb.",
+    title: "Hackspiration'26 | MLSC VIT Pune",
+    description: "Join Hackspiration'26, a hybrid hackathon at VIT Pune. Online round on 14th Feb, offline finale on 15th Feb.",
     images: ["/mlsc-logo.jpg"],
   },
 };
